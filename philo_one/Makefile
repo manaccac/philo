@@ -6,13 +6,13 @@
 #    By: manaccac <manaccac@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/02 13:08:51 by jdel-ros          #+#    #+#              #
-#    Updated: 2021/02/03 13:51:31 by manaccac         ###   ########lyon.fr    #
+#    Updated: 2021/02/03 14:01:26 by manaccac         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
 HEADER =	philo_one.h
 
-SRCS =		philo_one.c routine.c ft_conv_to_ms.c utils.c eat.c sleep.c
+SRCS =		philo_one.c routine.c ft_conv_to_ms.c utils.c eat.c sleep.c think.c
 
 OBJS	=	${SRCS:.c=.o}
 

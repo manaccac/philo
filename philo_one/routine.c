@@ -8,6 +8,7 @@ void        *routine(void *p_data)
     {
         philo_eat(philo);
         philo_sleep(philo);
+        //philo_think(philo);
     }
 	pthread_mutex_unlock(&philo->mt_eat);
     return (0);

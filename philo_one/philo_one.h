@@ -6,7 +6,7 @@
 /*   By: manaccac <manaccac@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 11:47:17 by jdel-ros          #+#    #+#             */
-/*   Updated: 2021/02/03 13:51:21 by manaccac         ###   ########lyon.fr   */
+/*   Updated: 2021/02/03 14:04:26 by manaccac         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct		s_philo
 	int name_philo;
 	int time_eat;
 	int time_sleep;
+	int	time_think;
 	int time_die;
 	int nb_eat;
 	int end_eat;
@@ -43,4 +44,5 @@ void	ft_putstr(char *str);
 void	*routine(void *p_data);
 void	*philo_eat(t_philo *philo);
 void	*philo_sleep(t_philo *philo);
+void	*philo_think(t_philo *philo);
 long	ft_conv_to_ms(struct timeval philo_time, struct timeval start_time);
