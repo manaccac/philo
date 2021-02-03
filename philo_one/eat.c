@@ -3,10 +3,9 @@
 void		*philo_eat(t_philo *philo)
 {
 	int i;
-	dprintf(1, "\nPHILO NUMERO : %d\n", philo->name_philo);
-	pthread_mutex_lock(&philo->mutex_philo);
+	// dprintf(1, "\nPHILO NUMERO : %d\n", philo->name_philo);
 	i = 0;
-	if (philo->nb_eat)
+	if (philo->nb_eat >= 0)
 	{
 		struct timeval start_eat;
 		gettimeofday(&start_eat, NULL);
@@ -21,6 +20,7 @@ void		*philo_eat(t_philo *philo)
 		if (philo->nb_eat == 0)
 			dprintf(1, "\nPhilo numero %d a fini de manger\n", philo->name_philo);
 	}
-	pthread_mutex_unlock(&philo->mutex_philo);
+	if (philo->nb_eat == 0)
+		philo->end_eat = 1;
 	return (0);
 }

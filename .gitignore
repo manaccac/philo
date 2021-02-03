@@ -1,0 +1,8 @@
+*.o
+*.a
+.vscode
+test
+test*
+obj/
+a.out
+main_test.c

@@ -6,7 +6,7 @@
 /*   By: manaccac <manaccac@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 11:47:17 by jdel-ros          #+#    #+#             */
-/*   Updated: 2021/02/03 12:56:49 by manaccac         ###   ########lyon.fr   */
+/*   Updated: 2021/02/03 13:51:21 by manaccac         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct		s_philo
 	int time_sleep;
 	int time_die;
 	int nb_eat;
+	int end_eat;
 	pthread_mutex_t mutex_philo;
 	pthread_mutex_t mt_eat;
 	// Time
@@ -41,4 +42,5 @@ int		ft_atoi(char *nptr);
 void	ft_putstr(char *str);
 void	*routine(void *p_data);
 void	*philo_eat(t_philo *philo);
+void	*philo_sleep(t_philo *philo);
 long	ft_conv_to_ms(struct timeval philo_time, struct timeval start_time);

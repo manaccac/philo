@@ -6,7 +6,6 @@ int            main(int argc, char **argv)
     struct timeval start_time;
     int nb_philo = ft_atoi(argv[1]);
     int i = 0;
-    int j = 0;
     if (nb_philo <= 1)
     {
         ft_putstr("Le nombre de philo doit être supérieur a 1");
@@ -17,11 +16,13 @@ int            main(int argc, char **argv)
     gettimeofday(&start_time, NULL);
     while (i < nb_philo)
     {
+
         philo[i].start_time = start_time;
         philo[i].nb_philo = nb_philo;
         philo[i].time_die = ft_atoi(argv[2]);
         philo[i].time_eat = ft_atoi(argv[3]);
         philo[i].time_sleep = ft_atoi(argv[4]);
+        philo[i].end_eat = 0;
         philo[i].name_philo = i;
         if (argc == 6)
             philo[i].nb_eat = ft_atoi(argv[5]);
@@ -31,16 +32,10 @@ int            main(int argc, char **argv)
     int ret = 0;
     i = 0;
 
-    while (j < nb_philo)
+    while (i < nb_philo)
     {
-        if (philo[i].nb_eat == 0)
-            i++;
         ret = pthread_create(&thread_philo[i], NULL, routine, &philo[i]);
-        if (philo[i].nb_eat == 0)
-            j++;
         i++;
-        if (i >= nb_philo)
-            i = 0;
     }
     i = 0;
     while (i < nb_philo)
