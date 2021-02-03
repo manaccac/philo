@@ -13,6 +13,7 @@ void        *routine(void *p_data)
     }
     while (philo->no_limite == 1 && philo->dead == 0)
     {
+        printf("{%d}\n", ft_check_die(philo));
         philo_eat(philo);
         philo_sleep(philo);
     }

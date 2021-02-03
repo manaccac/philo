@@ -5,6 +5,8 @@ void		*philo_eat(t_philo *philo)
 	int i;
 	//dprintf(1, "\nPHILO NUMERO : %d\n", philo->name_philo);
 	i = 0;
+
+	gettimeofday(&philo->ms_died, NULL);
 	if (philo->nb_eat >= 0 && philo->no_limite == 0)
 	{
 		struct timeval start_eat;
