@@ -16,7 +16,6 @@ int            main(int argc, char **argv)
     gettimeofday(&start_time, NULL);
     while (i < nb_philo)
     {
-
         philo[i].start_time = start_time;
         philo[i].nb_philo = nb_philo;
         philo[i].time_die = ft_atoi(argv[2]);
@@ -32,6 +31,7 @@ int            main(int argc, char **argv)
         }
         else
             philo[i].no_limite = 1;
+        gettimeofday(&philo[i].ms_died, NULL);
         i++;
     }
     pthread_t thread_philo[nb_philo];

@@ -6,7 +6,7 @@
 /*   By: manaccac <manaccac@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 11:47:17 by jdel-ros          #+#    #+#             */
-/*   Updated: 2021/02/03 14:14:43 by manaccac         ###   ########lyon.fr   */
+/*   Updated: 2021/02/03 14:40:23 by manaccac         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,3 +50,4 @@ void	*philo_eat(t_philo *philo);
 void	*philo_sleep(t_philo *philo);
 void	*philo_think(t_philo *philo);
 long	ft_conv_to_ms(struct timeval philo_time, struct timeval start_time);
+int		ft_check_die(t_philo *philo);

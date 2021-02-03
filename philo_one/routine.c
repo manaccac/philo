@@ -6,6 +6,7 @@ void        *routine(void *p_data)
     pthread_mutex_lock(&philo->mt_eat);
     while (philo->end_eat == 0 && philo->no_limite == 0)
     {
+        printf("{%d}\n", ft_check_die(philo));
         philo_eat(philo);
         philo_sleep(philo);
         //philo_think(philo);
