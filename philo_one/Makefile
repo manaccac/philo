@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jdel-ros <jdel-ros@student.42lyon.fr>      +#+  +:+       +#+         #
+#    By: manaccac <manaccac@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/02 13:08:51 by jdel-ros          #+#    #+#              #
-#    Updated: 2021/02/03 10:41:49 by jdel-ros         ###   ########lyon.fr    #
+#    Updated: 2021/02/03 12:36:23 by manaccac         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
 HEADER =	philo_one.h
 
-SRCS =		philo_one.c
+SRCS =		philo_one.c routine.c ft_conv_to_ms.c utils.c eat.c
 
 OBJS	=	${SRCS:.c=.o}
 
