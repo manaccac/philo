@@ -24,8 +24,14 @@ int            main(int argc, char **argv)
         philo[i].time_sleep = ft_atoi(argv[4]);
         philo[i].end_eat = 0;
         philo[i].name_philo = i;
+        philo[i].dead = 0;
         if (argc == 6)
+        {
             philo[i].nb_eat = ft_atoi(argv[5]);
+            philo[i].no_limite = 0;
+        }
+        else
+            philo[i].no_limite = 1;
         i++;
     }
     pthread_t thread_philo[nb_philo];
