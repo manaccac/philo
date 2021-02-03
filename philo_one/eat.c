@@ -1,6 +1,6 @@
 #include "philo_one.h"
 
-static void		*philo_eat(t_philo *philo)
+void		*philo_eat(t_philo *philo)
 {
 	dprintf(1, "\nPHILO NUMERO : %d\n", philo->name_philo);
 	pthread_mutex_lock(&philo->mutex_philo);

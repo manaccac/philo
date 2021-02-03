@@ -6,7 +6,7 @@
 /*   By: jdel-ros <jdel-ros@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 11:47:17 by jdel-ros          #+#    #+#             */
-/*   Updated: 2021/02/03 12:01:53 by jdel-ros         ###   ########lyon.fr   */
+/*   Updated: 2021/02/03 12:10:24 by jdel-ros         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,3 +39,5 @@ typedef struct		s_philo
 
 int		ft_atoi(char *nptr);
 void	ft_putstr(char *str);
+void	*routine(void *p_data);
+void	*philo_eat(t_philo *philo);
