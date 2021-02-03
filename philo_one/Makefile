@@ -6,7 +6,7 @@
 #    By: jdel-ros <jdel-ros@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/02 13:08:51 by jdel-ros          #+#    #+#              #
-#    Updated: 2021/02/02 13:50:14 by jdel-ros         ###   ########lyon.fr    #
+#    Updated: 2021/02/03 10:41:49 by jdel-ros         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ $(NAME): $(OBJS) $(HEADER)
 	@ar rcs $(NAME) $(OBJS)
 	gcc $(FLAGS) $(NAME)
 clean:
-	@$(RM) $(OBJS)
+	@$(RM) $(OBJS) a.out
 fclean:	clean
 	@$(RM) $(NAME)
 re: 	fclean all
