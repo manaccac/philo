@@ -19,7 +19,6 @@ int			main(int argc, char **argv)
 	while (i < nb_philo)
 	{
 		philo[i].start_time = start_time;
-		philo[i].nb_lunch = 0;
 		philo[i].nb_philo = nb_philo;
 		philo[i].time_die = ft_atoi(argv[2]);
 		philo[i].time_eat = ft_atoi(argv[3]);
@@ -32,7 +31,7 @@ int			main(int argc, char **argv)
 	pthread_t thread_philo[nb_philo];
 	int ret = 0;
 	i = 0;
-	
+
 	while (i < nb_philo)
 	{
 		ret = pthread_create(&thread_philo[i], NULL, routine, &philo[i]);

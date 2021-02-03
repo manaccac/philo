@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_one.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdel-ros <jdel-ros@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: manaccac <manaccac@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 11:47:17 by jdel-ros          #+#    #+#             */
-/*   Updated: 2021/02/03 12:10:24 by jdel-ros         ###   ########lyon.fr   */
+/*   Updated: 2021/02/03 12:19:47 by manaccac         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ typedef struct		s_philo
 	int time_sleep;
 	int time_die;
 	int nb_eat;
-	int nb_lunch;
 	pthread_mutex_t mutex_philo;
 	pthread_mutex_t mt_eat;
 	// Time
