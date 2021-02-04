@@ -18,10 +18,7 @@
 
 typedef struct		s_philo
 {
-	// pthread_mutex_t *r_fork;
-	// pthread_mutex_t *l_fork;
-	// int fork_l;
-	// int fork_r;
+	int philo_die;
 	int nb_philo;
 	int name_philo;
 	int time_eat;
@@ -34,7 +31,6 @@ typedef struct		s_philo
 	int	no_limite;
 	//mort du philo
 	int dead;
-	pthread_mutex_t mutex_philo;
 	pthread_mutex_t mt_eat;
 	// Time
 	struct timeval ms_eat;
@@ -51,7 +47,9 @@ typedef struct		s_perso
 {
 	int *eating;
 	int fork;
+	int *fork_perso;
 	t_philo *philo;
+	pthread_mutex_t *talk;
 	pthread_mutex_t *l_fork;
 	pthread_mutex_t *r_fork;
 }					t_perso;
@@ -64,3 +62,5 @@ void	*philo_sleep(t_philo *philo);
 void	*philo_think(t_philo *philo);
 long	ft_conv_to_ms(struct timeval philo_time, struct timeval start_time);
 int		ft_check_die(t_philo *philo);
+void	display(int name_philo, char *message, t_philo *philo);
+void	ft_putnbr(int n);

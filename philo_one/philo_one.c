@@ -25,6 +25,8 @@ int            main(int argc, char **argv)
 	perso->fork = nb_philo;
     if (!(perso->eating = (int *)malloc(sizeof(int) * nb_philo + 1)))
         return (-1);
+	if (!(perso->fork_perso = (int *)malloc(sizeof(int) * nb_philo + 1)))
+		return (-1);
     while (i < nb_philo)
     {
         philo[i].start_time = start_time;
@@ -35,6 +37,7 @@ int            main(int argc, char **argv)
         philo[i].end_eat = 0;
         philo[i].name_philo = i;
         philo[i].dead = 0;
+        philo[i].philo_die = 0;
         if (argc == 6)
         {
             philo[i].nb_eat = ft_atoi(argv[5]);
@@ -44,6 +47,9 @@ int            main(int argc, char **argv)
 			philo[i].no_limite = 1;
 		gettimeofday(&philo[i].ms_died, NULL);
 		philo[i].perso = perso;
+		if (!(perso->fork_perso[i] = (int)malloc(sizeof(int))))
+			return (-1);
+		philo[i].perso->fork_perso[i] = 1;
 		if (!(perso->eating[i] = (int)malloc(sizeof(int))))
 			return (-1);
 		philo[i].perso->eating[i] = 0;
@@ -51,6 +57,7 @@ int            main(int argc, char **argv)
     }
 	pthread_mutex_init(perso->l_fork, NULL);
 	pthread_mutex_init(perso->r_fork, NULL);
+	pthread_mutex_init(perso->talk, NULL);
     pthread_t thread_philo[nb_philo];
     int ret = 0;
     i = 0;
@@ -58,6 +65,8 @@ int            main(int argc, char **argv)
     while (i < nb_philo)
     {
         ret = pthread_create(&thread_philo[i], NULL, routine, &philo[i]);
+		if (philo[i].philo_die == 1)
+			return (ret);
         i++;
     }
     i = 0;

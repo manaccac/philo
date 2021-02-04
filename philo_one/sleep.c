@@ -13,7 +13,6 @@ void		*philo_sleep(t_philo *philo)
 		if (ft_conv_to_ms(philo->ms_sleep, start_sleep) >= philo->time_sleep)
 			i = 1;
 	}
-	dprintf(1, "\nPhilo numero %d a fini de dormir\n", philo->name_philo);
-
+	display(philo->name_philo, " is sleeping", philo);
 	return (0);
 }

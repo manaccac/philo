@@ -32,3 +32,26 @@ int		ft_atoi(char *nptr)
 	}
 	return (res * a);
 }
+
+static void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
+
+void	ft_putnbr(int n)
+{
+	{
+		if (n >= 0 && n <= 9)
+			ft_putchar(n + 48);
+		else if (n < 0)
+		{
+			ft_putchar('-');
+			ft_putnbr(-n);
+		}
+		else
+		{
+			ft_putnbr(n / 10);
+			ft_putnbr(n % 10);
+		}
+	}
+}
