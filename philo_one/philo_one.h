@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_one.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manaccac <manaccac@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: jdel-ros <jdel-ros@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/02 11:47:17 by jdel-ros          #+#    #+#             */
-/*   Updated: 2021/02/03 14:40:23 by manaccac         ###   ########lyon.fr   */
+/*   Created: 2021/02/04 09:17:15 by jdel-ros          #+#    #+#             */
+/*   Updated: 2021/02/04 10: by jdel-ros         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,12 @@
 #include <unistd.h>
 #include <sys/time.h>
 
-
 typedef struct		s_philo
 {
+	// pthread_mutex_t *r_fork;
+	// pthread_mutex_t *l_fork;
+	// int fork_l;
+	// int fork_r;
 	int nb_philo;
 	int name_philo;
 	int time_eat;
@@ -41,7 +44,17 @@ typedef struct		s_philo
 	//
 	struct timeval t_philo;
 	struct timeval start_time;
+	struct s_perso *perso;
 }					t_philo;
+
+typedef struct		s_perso
+{
+	int *eating;
+	int fork;
+	t_philo *philo;
+	pthread_mutex_t *l_fork;
+	pthread_mutex_t *r_fork;
+}					t_perso;
 
 int		ft_atoi(char *nptr);
 void	ft_putstr(char *str);

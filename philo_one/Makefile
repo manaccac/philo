@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: manaccac <manaccac@student.42lyon.fr>      +#+  +:+       +#+         #
+#    By: jdel-ros <jdel-ros@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/02 13:08:51 by jdel-ros          #+#    #+#              #
-#    Updated: 2021/02/03 14:40:40 by manaccac         ###   ########lyon.fr    #
+#    Updated: 2021/02/04 10:35:01 by jdel-ros         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
