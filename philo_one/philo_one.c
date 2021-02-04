@@ -13,17 +13,17 @@ int            main(int argc, char **argv)
         ft_putstr("Le nombre de philo doit être supérieur a 1");
         return (-1);
     }
-    if (!(philo = malloc(sizeof(philo) * nb_philo)))
+    if (!(philo = malloc(sizeof(t_philo) * nb_philo + 1)))
         return (-1);
     gettimeofday(&start_time, NULL);
-	if (!(perso = malloc(sizeof(perso))))
+	if (!(perso = malloc(sizeof(t_perso))))
 		return (-1);
     if (!(perso->r_fork = (pthread_mutex_t*)malloc(sizeof(pthread_mutex_t))))
         return (-1);
     if (!(perso->l_fork = (pthread_mutex_t*)malloc(sizeof(pthread_mutex_t))))
         return (-1);
 	perso->fork = nb_philo;
-    if (!(perso->eating = (int *)malloc(sizeof(int) * nb_philo)))
+    if (!(perso->eating = (int *)malloc(sizeof(int) * nb_philo + 1)))
         return (-1);
     while (i < nb_philo)
     {
@@ -41,10 +41,12 @@ int            main(int argc, char **argv)
             philo[i].no_limite = 0;
         }
         else
-            philo[i].no_limite = 1;
-        gettimeofday(&philo[i].ms_died, NULL);
+			philo[i].no_limite = 1;
+		gettimeofday(&philo[i].ms_died, NULL);
 		philo[i].perso = perso;
-        philo[i].perso->eating[i] = 0;
+		if (!(perso->eating[i] = (int)malloc(sizeof(int))))
+			return (-1);
+		philo[i].perso->eating[i] = 0;
         i++;
     }
 	pthread_mutex_init(perso->l_fork, NULL);
