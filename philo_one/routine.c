@@ -7,7 +7,7 @@ void		*routine(void *p_data)
 	{
 		if (ft_check_die(philo) == 1)
 		{
-			ft_putstr("A philosopher died :'(\n");
+			display(philo->name_philo, " died", philo);
 			philo->philo_die = 1;
 			return (0);
 		}
