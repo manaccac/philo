@@ -37,11 +37,11 @@ void		*routine(void *p_data)
 			philo->perso->fork_perso[philo->name_philo - 1] = 1;
 			philo->perso->fork_perso[philo->name_philo] = 1;
 		}
-		if (philo->end_eat == 1)
-		{
+//		if (philo->end_eat == 1)
+//		{
 			philo_sleep(philo);
 			philo_think(philo);
-		}
+//		}
 	}
 	while (philo->no_limite == 1 && philo->dead == 0)
 	{
