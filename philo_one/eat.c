@@ -29,7 +29,7 @@ void		*philo_eat(t_philo *philo)
 				i = 1;
 		}
 	}
-	if (philo->nb_eat == 0)
+	if (philo->nb_eat == 0 && philo->no_limite == 0)
 		philo->end_eat = 1;
 	return (0);
 }
