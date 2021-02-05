@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: juan <juan@student.42lyon.fr>              +#+  +:+       +#+         #
+#    By: jdel-ros <jdel-ros@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/02 13:08:51 by jdel-ros          #+#    #+#              #
-#    Updated: 2021/02/04 17:54:28 by juan             ###   ########lyon.fr    #
+#    Updated: 2021/02/05 09:10:52 by jdel-ros         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
 HEADER =	philo_one.h
 
 SRCS =		philo_one.c routine.c ft_conv_to_ms.c utils.c eat.c sleep.c think.c \
-			ft_check_die.c messages.c \
+			ft_check_die.c messages.c init.c \
 
 OBJS	=	${SRCS:.c=.o}
 

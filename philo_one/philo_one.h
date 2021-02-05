@@ -18,6 +18,7 @@
 
 typedef struct		s_philo
 {
+	int suce;
 	int philo_die;
 	int nb_philo;
 	int name_philo;
@@ -55,6 +56,15 @@ typedef struct		s_perso
 	pthread_mutex_t *r_fork;
 }					t_perso;
 
+
+typedef struct		s_init
+{
+	t_philo			*philo;
+	t_perso			*perso;
+}					t_init;
+
+
+
 int		ft_atoi(char *nptr);
 void	ft_putstr(char *str);
 void	*routine(void *p_data);
@@ -65,3 +75,5 @@ long	ft_conv_to_ms(struct timeval philo_time, struct timeval start_time);
 int		ft_check_die(t_philo *philo);
 void	display(int name_philo, char *message, t_philo *philo);
 void	ft_putnbr(int n);
+int		ft_init_var(int nb_philo, t_philo *philo, char **argv, int i, struct timeval start_time);
+int		ft_malloc_struct(int nb_philo, t_init *init);
