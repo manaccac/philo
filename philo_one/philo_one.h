@@ -27,6 +27,7 @@ typedef struct		s_philo
 	int time_die;
 	int nb_eat;
 	int end_eat;
+	int first_eat;
 	//pas de limite de repas
 	int	no_limite;
 	//mort du philo

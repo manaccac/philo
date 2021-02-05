@@ -1,4 +1,3 @@
-
 #include "philo_one.h"
 
 int            main(int argc, char **argv)
@@ -29,6 +28,7 @@ int            main(int argc, char **argv)
 		return (-1);
     while (i < nb_philo)
     {
+        philo[i].first_eat = 0;
         philo[i].start_time = start_time;
         philo[i].nb_philo = nb_philo;
         philo[i].time_die = ft_atoi(argv[2]);
