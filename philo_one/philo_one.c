@@ -28,10 +28,11 @@ int            main(int argc, char **argv)
 		init.philo[i].perso->eating[i] = 0;
         i++;
     }
-	pthread_mutex_init(init.perso->l_fork, NULL);
-	pthread_mutex_init(init.perso->r_fork, NULL);
-	pthread_mutex_init(init.perso->talk, NULL);
     pthread_t thread_philo[nb_philo];
+	pthread_mutex_init(init.perso->l_fork, NULL);
+	pthread_mutex_init(init.perso->talk, NULL);
+	pthread_mutex_init(init.perso->r_fork, NULL);
+	pthread_mutex_init(init.perso->die, NULL);
     int ret = 0;
     i = 0;
     while (i < nb_philo)

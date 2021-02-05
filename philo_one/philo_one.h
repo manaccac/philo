@@ -18,7 +18,7 @@
 
 typedef struct		s_philo
 {
-	int suce;
+	int	satiate;
 	int philo_die;
 	int nb_philo;
 	int name_philo;
@@ -48,21 +48,22 @@ typedef struct		s_philo
 typedef struct		s_perso
 {
 	int *eating;
+	int	start;
+	int if_die;
 	int fork;
 	int *fork_perso;
 	t_philo *philo;
 	pthread_mutex_t *talk;
+	pthread_mutex_t *die;
 	pthread_mutex_t *l_fork;
 	pthread_mutex_t *r_fork;
 }					t_perso;
-
 
 typedef struct		s_init
 {
 	t_philo			*philo;
 	t_perso			*perso;
 }					t_init;
-
 
 
 int		ft_atoi(char *nptr);
