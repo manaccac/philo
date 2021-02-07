@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: juan <juan@student.42lyon.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/05 19:22:30 by juan              #+#    #+#             */
+/*   Updated: 2021/02/05 19:31:06 by juan             ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo_one.h"
 
-int			ft_init_var(int nb_philo, t_philo *philo, char **argv, int i, struct timeval start_time)
+int			ft_init_var(int nb_philo, t_philo *philo, char **argv, int i)
 {
 	philo[i].first_eat = 0;
-	philo[i].start_time = start_time;
 	philo[i].nb_philo = nb_philo;
 	philo[i].time_die = ft_atoi(argv[2]);
 	philo[i].time_eat = ft_atoi(argv[3]);
@@ -26,22 +37,25 @@ int			ft_init_var(int nb_philo, t_philo *philo, char **argv, int i, struct timev
 int			ft_malloc_struct(int nb_philo, t_init *init)
 {
 	if (!(init->philo = malloc(sizeof(t_philo) * nb_philo + 1)))
-	    return (-1);
+		return (-1);
 	if (!(init->perso = malloc(sizeof(t_perso))))
 		return (-1);
-	if (!(init->perso->r_fork = (pthread_mutex_t*)malloc(sizeof(pthread_mutex_t))))
-	    return (-1);
-	if (!(init->perso->l_fork = (pthread_mutex_t*)malloc(sizeof(pthread_mutex_t))))
-	    return (-1);
-	if (!(init->perso->talk = (pthread_mutex_t*)malloc(sizeof(pthread_mutex_t))))
-	    return (-1);
+	if (!(init->perso->r_fork =
+		(pthread_mutex_t*)malloc(sizeof(pthread_mutex_t))))
+		return (-1);
+	if (!(init->perso->l_fork =
+		(pthread_mutex_t*)malloc(sizeof(pthread_mutex_t))))
+		return (-1);
+	if (!(init->perso->talk =
+		(pthread_mutex_t*)malloc(sizeof(pthread_mutex_t))))
+		return (-1);
 	if (!(init->perso->die = (pthread_mutex_t*)malloc(sizeof(pthread_mutex_t))))
-	    return (-1);
+		return (-1);
 	init->perso->fork = nb_philo;
 	init->perso->if_die = 0;
 	init->perso->start = 0;
 	if (!(init->perso->eating = (int *)malloc(sizeof(int) * nb_philo + 1)))
-	    return (-1);
+		return (-1);
 	if (!(init->perso->fork_perso = (int *)malloc(sizeof(int) * nb_philo + 1)))
 		return (-1);
 	return (0);

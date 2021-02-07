@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   routine.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: juan <juan@student.42lyon.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/07 14:17:01 by juan              #+#    #+#             */
+/*   Updated: 2021/02/07 14:17:05 by juan             ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo_one.h"
 
 void		*routine(void *p_data)
@@ -9,16 +21,7 @@ void		*routine(void *p_data)
 			return (0);
 		pthread_mutex_lock(philo->perso->die);
 		if (ft_check_die(philo) == 1)
-		{
-			philo->philo_die = 1;
-			if (philo->perso->if_die == 0)
-			{
-				philo->perso->if_die = 1;
-				display(philo->name_philo, " died", philo);
-			}
-			pthread_mutex_unlock(philo->perso->die);
-			return (0);
-		}
+			return (ft_return_die(philo));
 		pthread_mutex_unlock(philo->perso->die);
 		if ((philo->perso->fork_perso[philo->name_philo - 1] == 1 && philo->perso->fork_perso[philo->name_philo] == 1) ||
 			(philo->name_philo == 0 && (philo->perso->fork_perso[philo->nb_philo - 1] == 1 && philo->perso->fork_perso[philo->name_philo] == 1)))
@@ -92,16 +95,7 @@ void		*routine(void *p_data)
 			return (0);
 		pthread_mutex_lock(philo->perso->die);
 		if (ft_check_die(philo) == 1)
-		{
-			philo->philo_die = 1;
-			if (philo->perso->if_die == 0)
-			{
-				philo->perso->if_die = 1;
-				display(philo->name_philo, " died", philo);
-			}
-			pthread_mutex_unlock(philo->perso->die);
-			return (0);
-		}
+			return (ft_return_die(philo));
 		pthread_mutex_unlock(philo->perso->die);
 		if ((philo->perso->fork_perso[philo->name_philo - 1] == 1 && philo->perso->fork_perso[philo->name_philo] == 1) ||
 			(philo->name_philo == 0 && (philo->perso->fork_perso[philo->nb_philo - 1] == 1 && philo->perso->fork_perso[philo->name_philo] == 1)))
