@@ -28,9 +28,9 @@ int			ft_malloc_struct(int nb_philo, t_init *init)
 	    return (-1);
 	if (!(init->perso = malloc(sizeof(t_perso))))
 		return (-1);
-	if (!(init->perso->r_fork = (pthread_mutex_t*)malloc(sizeof(pthread_mutex_t) * nb_philo)))
+	if (!(init->perso->r_fork = (pthread_mutex_t*)malloc(sizeof(pthread_mutex_t) * nb_philo + 1)))
 	    return (-1);
-	if (!(init->perso->l_fork = (pthread_mutex_t*)malloc(sizeof(pthread_mutex_t) * nb_philo)))
+	if (!(init->perso->l_fork = (pthread_mutex_t*)malloc(sizeof(pthread_mutex_t) * nb_philo + 1)))
 	    return (-1);
 	if (!(init->perso->talk = (pthread_mutex_t*)malloc(sizeof(pthread_mutex_t))))
 	    return (-1);
