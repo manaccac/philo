@@ -16,6 +16,8 @@
 #include <unistd.h>
 #include <sys/time.h>
 
+#define ERR_ARG "Error: argument\n"
+
 typedef struct		s_philo
 {
 	int	satiate;
@@ -65,6 +67,7 @@ typedef struct		s_init
 }					t_init;
 
 
+int		put_error(char *err);
 int		ft_atoi(char *nptr);
 void	ft_putstr(char *str);
 void	*routine(void *p_data);

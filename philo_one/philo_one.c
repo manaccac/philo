@@ -1,12 +1,27 @@
 #include "philo_one.h"
 
+int             check_arg(int argc, char **argv)
+{
+    if (argc < 5 || argc > 6)
+        return (put_error(ERR_ARG));
+    if (ft_atoi(argv[1]) > 200 || ft_atoi(argv[1]) <= 0)
+        return (put_error(ERR_ARG));
+	if (ft_atoi(argv[2]) < 60 || ft_atoi(argv[3]) < 60 || ft_atoi(argv[4]) < 60)
+        return (put_error(ERR_ARG));
+	return (1);
+}
+
 int            main(int argc, char **argv)
 {
-    (void)argc;
     t_init init;
     struct timeval start_time;
-    int nb_philo = ft_atoi(argv[1]);
-    int i = 0;
+    int nb_philo;
+    int i;
+    
+    if (check_arg(argc, argv) == 0)
+        return (0);
+    nb_philo = ft_atoi(argv[1]);
+    i = 0;
     if (nb_philo <= 1)
     {
         ft_putstr("Le nombre de philo doit être supérieur a 1");

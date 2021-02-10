@@ -55,3 +55,9 @@ void	ft_putnbr(int n)
 		}
 	}
 }
+
+int			put_error(char *err)
+{
+	ft_putstr(err);
+	return (0);
+}
