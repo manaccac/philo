@@ -109,16 +109,11 @@ void		*routine(void *p_data)
 				{
 					if (philo->perso->if_die == 1)
 						return (0);
-					if (philo->name_philo == 0)
-					{
-						philo->perso->fork_perso[philo->nb_philo - 1] = 0;
-						philo->perso->fork_perso[philo->name_philo] = 0;
-					}
-					else
-					{
+					philo->perso->fork_perso[philo->name_philo] = 0;
+					if (philo->name_philo != 0)
 						philo->perso->fork_perso[philo->name_philo - 1] = 0;
-						philo->perso->fork_perso[philo->name_philo] = 0;
-					}
+					else
+						philo->perso->fork_perso[philo->nb_philo - 1] = 0;
 					if (philo->perso->if_die == 1)
 						return (0);
 					pthread_mutex_lock(&philo->perso->l_fork[philo->name_philo]);
@@ -139,16 +134,12 @@ void		*routine(void *p_data)
 					philo->perso->fork += 1;
 					pthread_mutex_unlock(&philo->perso->r_fork[philo->name_philo]);
 					philo->perso->fork += 1;
-					if (philo->name_philo == 0)
-					{
-						philo->perso->fork_perso[philo->nb_philo - 1] = 1;
-						philo->perso->fork_perso[philo->name_philo] = 1;
-					}
-					else
-					{
+					philo->perso->fork_perso[philo->name_philo] = 1;
+					if (philo->name_philo != 0)
 						philo->perso->fork_perso[philo->name_philo - 1] = 1;
-						philo->perso->fork_perso[philo->name_philo] = 1;
-					}
+					else
+						philo->perso->fork_perso[philo->nb_philo - 1] = 1;
+
 					if (philo->perso->if_die == 1)
 						return (0);
 					display(philo->name_philo, " is sleeping", philo);
