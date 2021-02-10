@@ -6,7 +6,7 @@
 #    By: manaccac <manaccac@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/02 13:08:51 by jdel-ros          #+#    #+#              #
-#    Updated: 2021/02/10 11:59:06 by manaccac         ###   ########lyon.fr    #
+#    Updated: 2021/02/10 12:38:36 by manaccac         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,9 +29,9 @@ all: $(NAME)
 	@gcc $(FLAGS) -c $< -o $@
 $(NAME): $(OBJS) $(HEADER)
 	@ar rcs $(NAME) $(OBJS)
-	gcc $(FLAGS) $(NAME) -o philo_one
+	gcc $(FLAGS) $(NAME) -o philo_two
 clean:
-	@$(RM) $(OBJS) philo_one
+	@$(RM) $(OBJS) philo_two
 fclean:	clean
 	@$(RM) $(NAME)
 re: 	fclean all
