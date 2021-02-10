@@ -1,6 +1,6 @@
 #include "philo_one.h"
 
-int			check_arg(int argc, char **argv)
+static int			check_arg(int argc, char **argv)
 {
 	if (argc < 5 || argc > 6)
 		return (put_error(ERR_ARG));
@@ -9,6 +9,14 @@ int			check_arg(int argc, char **argv)
 	if (ft_atoi(argv[2]) < 60 || ft_atoi(argv[3]) < 60 || ft_atoi(argv[4]) < 60)
 		return (put_error(ERR_ARG));
 	return (1);
+}
+
+static void             ft_free(t_init *init)
+{
+    free(init->perso->eating);
+	free(init->perso->fork_perso);
+	free(init->philo);
+	free(init->perso);
 }
 
 int				main(int argc, char **argv)
@@ -35,11 +43,7 @@ int				main(int argc, char **argv)
 		ft_init_var(nb_philo, init.philo, argv, i, start_time);
 		gettimeofday(&init.philo[i].ms_died, NULL);
 		init.philo[i].perso = init.perso;
-		if (!(init.perso->fork_perso[i] = (int)malloc(sizeof(int))))
-			return (-1);
 		init.philo[i].perso->fork_perso[i] = 1;
-		if (!(init.perso->eating[i] = (int)malloc(sizeof(int))))
-			return (-1);
 		init.philo[i].perso->eating[i] = 0;
 		i++;
 	}
@@ -63,9 +67,6 @@ int				main(int argc, char **argv)
 		pthread_join(thread_philo[i], NULL);
 		i++;
 	}
-    free(init.perso->eating);
-	free(init.perso->fork_perso);
-	free(init.perso);
-	free(init.philo);
+	ft_free(&init);
 	return (ret);
 }
