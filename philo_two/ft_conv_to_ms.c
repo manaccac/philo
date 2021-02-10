@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_conv_to_ms.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manaccac <manaccac@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: jdel-ros <jdel-ros@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 10:45:12 by manaccac          #+#    #+#             */
-/*   Updated: 2021/02/03 13:34:11 by manaccac         ###   ########lyon.fr   */
+/*   Updated: 2021/02/10 13:18:11 by jdel-ros         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_one.h"
+#include "philo_two.h"
 
 long	ft_conv_to_ms(struct timeval philo_time, struct timeval start_time)
 {

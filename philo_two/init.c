@@ -1,4 +1,4 @@
-#include "philo_one.h"
+#include "philo_two.h"
 
 int			ft_init_var(int nb_philo, t_philo *philo, char **argv, int i, struct timeval start_time)
 {

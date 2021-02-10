@@ -1,4 +1,4 @@
-#include "philo_one.h"
+#include "philo_two.h"
 
 void		*philo_eat(t_philo *philo)
 {

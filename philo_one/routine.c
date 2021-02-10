@@ -15,6 +15,7 @@ void		*routine(void *p_data)
 				philo->perso->if_die = 1;
 				display(philo->name_philo, " died", philo);
 			}
+			pthread_mutex_unlock(philo->perso->die);
 			return (0);
 		}
 		if (philo->perso->fork / 2 >= 1)

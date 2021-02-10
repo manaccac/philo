@@ -6,11 +6,11 @@
 /*   By: jdel-ros <jdel-ros@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 10:40:23 by manaccac          #+#    #+#             */
-/*   Updated: 2021/02/05 11:45:08 by jdel-ros         ###   ########lyon.fr   */
+/*   Updated: 2021/02/10 13:18:07 by jdel-ros         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_one.h"
+#include "philo_two.h"
 
 int		ft_check_die(t_philo *philo)
 {
