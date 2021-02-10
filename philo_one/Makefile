@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jdel-ros <jdel-ros@student.42lyon.fr>      +#+  +:+       +#+         #
+#    By: manaccac <manaccac@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/02 13:08:51 by jdel-ros          #+#    #+#              #
-#    Updated: 2021/02/05 09:10:52 by jdel-ros         ###   ########lyon.fr    #
+#    Updated: 2021/02/10 11:46:05 by manaccac         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,9 +29,9 @@ all: $(NAME)
 	@gcc $(FLAGS) -c $< -o $@
 $(NAME): $(OBJS) $(HEADER)
 	@ar rcs $(NAME) $(OBJS)
-	gcc $(FLAGS) $(NAME)
+	gcc $(FLAGS) $(NAME) -o philo_one
 clean:
-	@$(RM) $(OBJS) a.out
+	@$(RM) $(OBJS) philo_one
 fclean:	clean
 	@$(RM) $(NAME)
 re: 	fclean all
