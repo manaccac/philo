@@ -7,7 +7,7 @@ void		display(int name_philo, char *message, t_philo *philo)
 	if (philo->philo_die == 1)
 	{
 		gettimeofday(&temp, NULL);
-		printf("%d %d%s\n", (int)ft_conv_to_ms(temp, philo->start_time), name_philo, message);
+		printf("%d %d%s\n", (int)ft_conv_to_ms(temp, philo->start_time), name_philo + 1, message);
 		pthread_mutex_unlock(philo->perso->talk);
 		return ;
 	}
@@ -17,6 +17,6 @@ void		display(int name_philo, char *message, t_philo *philo)
 		return ;
 	}
 	gettimeofday(&temp, NULL);
-	printf("%d %d%s\n", (int)ft_conv_to_ms(temp, philo->start_time), name_philo, message);
+	printf("%d %d%s\n", (int)ft_conv_to_ms(temp, philo->start_time), name_philo + 1, message);
 	pthread_mutex_unlock(philo->perso->talk);
 }

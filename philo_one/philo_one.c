@@ -61,5 +61,13 @@ int            main(int argc, char **argv)
         pthread_join(thread_philo[i], NULL);
         i++;
     }
+    free(init.perso->l_fork);
+    free(init.perso->talk);
+    free(init.perso->r_fork);
+    free(init.perso->die);
+    free(init.perso->eating);
+	free(init.perso->fork_perso);
+	free(init.perso);
+	free(init.philo);
     return (ret);
 }
