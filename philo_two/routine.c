@@ -5,6 +5,7 @@ void		*routine(void *p_data)
 	t_philo *philo = p_data;
 	while (philo->no_limite == 0 && philo->nb_eat > 0 && philo->perso->if_die == 0)
 	{
+		usleep(10);
 		if (ft_check_die(philo) == 1)
 		{
 			sem_wait(philo->perso->s_die);
@@ -47,6 +48,7 @@ void		*routine(void *p_data)
 	//
 	while (philo->no_limite == 1 && philo->perso->if_die == 0)
 	{
+		usleep(10);
 		if (ft_check_die(philo) == 1)
 		{
 			sem_wait(philo->perso->s_die);
@@ -59,7 +61,6 @@ void		*routine(void *p_data)
 			sem_post(philo->perso->s_die);
 			return (0);
 		}
-		sem_post(philo->perso->s_die);
 		if (philo->perso->fork / 2 >= 1)
 		{
 			if (philo->perso->if_die == 1)
