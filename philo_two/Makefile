@@ -6,7 +6,7 @@
 #    By: jdel-ros <jdel-ros@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/02 13:08:51 by jdel-ros          #+#    #+#              #
-#    Updated: 2021/02/10 13:17:47 by jdel-ros         ###   ########lyon.fr    #
+#    Updated: 2021/02/10 13:48:39 by jdel-ros         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SRCS =		philo_two.c routine.c ft_conv_to_ms.c utils.c eat.c sleep.c think.c \
 
 OBJS	=	${SRCS:.c=.o}
 
-NAME	=	philo_one.a
+NAME	=	philo_two.a
 
 RM		=	rm -f
 
