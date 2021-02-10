@@ -37,8 +37,7 @@ void		*routine(void *p_data)
 			{
 				if (philo->perso->if_die == 1)
 					return (0);
-				display(philo->name_philo, " is sleeping", philo);
-				usleep(philo->time_sleep * 1000);
+				philo_sleep(philo);
 				if (philo->perso->if_die == 1)
 					return (0);
 				display(philo->name_philo, " is thinking", philo);
@@ -79,8 +78,7 @@ void		*routine(void *p_data)
 			sem_post(philo->perso->s_fork);
 			if (philo->perso->if_die == 1)
 				return (0);
-			display(philo->name_philo, " is sleeping", philo);
-			usleep(philo->time_sleep * 1000);
+			philo_sleep(philo);
 			if (philo->perso->if_die == 1)
 				return (0);
 			display(philo->name_philo, " is thinking", philo);

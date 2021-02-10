@@ -47,9 +47,9 @@ int				main(int argc, char **argv)
 	sem_unlink("/fork");
 	sem_unlink("/die");
 	sem_unlink("/talk");
-	init.perso->s_talk = sem_open("/talk", O_CREAT | O_EXCL, S_IRWXU, 1);	
-	init.perso->s_die = sem_open("/die", O_CREAT | O_EXCL, S_IRWXU, 1);	
-	init.perso->s_fork = sem_open("/fork", O_CREAT | O_EXCL, S_IRWXU, nb_philo + 1);	
+	init.perso->s_talk = sem_open("/talk", O_CREAT | O_EXCL, S_IRWXU, 1);
+	init.perso->s_die = sem_open("/die", O_CREAT | O_EXCL, S_IRWXU, 1);
+	init.perso->s_fork = sem_open("/fork", O_CREAT | O_EXCL, S_IRWXU, nb_philo + 1);
 	int ret = 0;
 	i = 0;
 	while (i < nb_philo)

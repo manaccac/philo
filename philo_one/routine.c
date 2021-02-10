@@ -57,8 +57,7 @@ void		*routine(void *p_data)
 						return (0);
 					if (philo->nb_eat > 0)
 					{
-						display(philo->name_philo, " is sleeping", philo);
-						usleep(philo->time_sleep * 1000);
+						philo_sleep(philo);
 						if (philo->perso->if_die == 1)
 							return (0);
 						display(philo->name_philo, " is thinking", philo);
@@ -112,7 +111,6 @@ void		*routine(void *p_data)
 						return (0);
 					}
 					philo_eat(philo);
-////	///////////////////////////////
 					pthread_mutex_unlock(&philo->perso->l_fork[philo->name_philo]);
 					pthread_mutex_unlock(&philo->perso->r_fork[philo->name_philo]);
 					philo->perso->fork += 2;
@@ -123,8 +121,7 @@ void		*routine(void *p_data)
 						philo->perso->fork_perso[philo->nb_philo - 1] = 1;
 					if (philo->perso->if_die == 1)
 						return (0);
-					display(philo->name_philo, " is sleeping", philo);
-					usleep(philo->time_sleep * 1000);
+					philo_sleep(philo);
 					if (philo->perso->if_die == 1)
 						return (0);
 					display(philo->name_philo, " is thinking", philo);

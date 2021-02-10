@@ -11,6 +11,18 @@ void		*philo_sleep(t_philo *philo)
 	while (i != 1)
 	{
 		gettimeofday(&philo->ms_sleep, NULL);
+		if (ft_check_die(philo) == 1)
+		{
+			sem_wait(philo->perso->s_die);
+			philo->philo_die = 1;
+			if (philo->perso->if_die == 0)
+			{
+				philo->perso->if_die = 1;
+				display(philo->name_philo, " died", philo);
+			}
+			sem_post(philo->perso->s_die);
+			return (0);
+		}
 		if (ft_conv_to_ms(philo->ms_sleep, start_sleep) >= philo->time_sleep || philo->perso->if_die == 1)
 			i = 1;
 	}
