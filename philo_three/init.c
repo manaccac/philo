@@ -9,7 +9,7 @@ int			ft_init_var(int nb_philo, t_philo *philo, char **argv, int i, struct timev
 	philo[i].time_eat = ft_atoi(argv[3]);
 	philo[i].time_sleep = ft_atoi(argv[4]);
 	philo[i].end_eat = 0;
-	philo[i].name_philo = i;
+	philo[i].np = i;
 	philo[i].dead = 0;
 	philo[i].philo_die = 0;
 	philo[i].satiate = 0;
@@ -29,14 +29,14 @@ int			ft_malloc_struct(int nb_philo, t_init *init)
 	    return (-1);
 	if (!(init->perso = malloc(sizeof(t_perso))))
 		return (-1);
-	init->perso->fork = nb_philo;
-	init->perso->if_die = 0;
-	// init->perso->i = 0;
-	if (!(init->perso->eating = (int *)malloc(sizeof(int) * nb_philo + 1)))
+	init->p->fork = nb_philo;
+	init->p->if_die = 0;
+	// init->p->i = 0;
+	if (!(init->p->eating = (int *)malloc(sizeof(int) * nb_philo + 1)))
 	    return (-1);
 	// if (!(init->philo->pid = (int *)malloc(sizeof(int) * nb_philo + 1)))
 	// 	return (-1);
-	if (!(init->perso->fork_perso = (int *)malloc(sizeof(int) * nb_philo + 1)))
+	if (!(init->p->fp = (int *)malloc(sizeof(int) * nb_philo + 1)))
 		return (-1);
 	return (0);
 }

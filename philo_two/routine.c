@@ -1,36 +1,58 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   routine.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jdel-ros <jdel-ros@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/15 11:56:08 by jdel-ros          #+#    #+#             */
+/*   Updated: 2021/02/15 12:04:02 by jdel-ros         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo_two.h"
 
-void		*routine(void *p_data)
+static void		*routine_no_limit(t_philo *philo)
 {
-	t_philo *philo = p_data;
-	while (philo->no_limite == 0 && philo->nb_eat > 0 && philo->perso->if_die == 0)
+	while (philo->perso->if_die == 0)
 	{
 		usleep(10);
 		if (ft_check_die(philo) == 1)
-		{
-			sem_wait(philo->perso->s_die);
-			philo->philo_die = 1;
-			if (philo->perso->if_die == 0)
-			{
-				philo->perso->if_die = 1;
-				display(philo->name_philo, " died", philo);
-			}
-			sem_post(philo->perso->s_die);
-			return (0);
-		}
+			return (ft_check_die_two(philo));
 		if (philo->perso->fork / 2 >= 1)
 		{
+			if (take_fork(philo) == 0)
+				return (0);
+			philo_eat(philo);
+			philo->perso->fork += 2;
+			sem_post(philo->perso->s_fork);
 			if (philo->perso->if_die == 1)
 				return (0);
-			philo->perso->fork -= 2;
-			sem_wait(philo->perso->s_fork);
-			display(philo->name_philo, " has taken a fork", philo);
-			display(philo->name_philo, " has taken a fork", philo);
+			philo_sleep(philo);
 			if (philo->perso->if_die == 1)
-			{
-				sem_post(philo->perso->s_fork);
 				return (0);
-			}
+			display(philo->name_philo, " is thinking", philo);
+		}
+	}
+	return (0);
+}
+
+void			*routine(void *p_data)
+{
+	t_philo *philo;
+
+	philo = p_data;
+	if (philo->no_limite == 1)
+		return (routine_no_limit(philo));
+	while (philo->nb_eat > 0 && philo->perso->if_die == 0)
+	{
+		usleep(10);
+		if (ft_check_die(philo) == 1)
+			return (ft_check_die_two(philo));
+		if (philo->perso->fork / 2 >= 1)
+		{
+			if (take_fork(philo) == 0)
+				return (0);
 			philo_eat(philo);
 			philo->perso->fork += 2;
 			sem_post(philo->perso->s_fork);
@@ -43,46 +65,6 @@ void		*routine(void *p_data)
 					return (0);
 				display(philo->name_philo, " is thinking", philo);
 			}
-		}
-	}
-	//
-	while (philo->no_limite == 1 && philo->perso->if_die == 0)
-	{
-		usleep(10);
-		if (ft_check_die(philo) == 1)
-		{
-			sem_wait(philo->perso->s_die);
-			philo->philo_die = 1;
-			if (philo->perso->if_die == 0)
-			{
-				philo->perso->if_die = 1;
-				display(philo->name_philo, " died", philo);
-			}
-			sem_post(philo->perso->s_die);
-			return (0);
-		}
-		if (philo->perso->fork / 2 >= 1)
-		{
-			if (philo->perso->if_die == 1)
-				return (0);
-			philo->perso->fork -= 2;
-			sem_wait(philo->perso->s_fork);
-			display(philo->name_philo, " has taken a fork", philo);
-			display(philo->name_philo, " has taken a fork", philo);
-			if (philo->perso->if_die == 1)
-			{
-				sem_post(philo->perso->s_fork);
-				return (0);
-			}
-			philo_eat(philo);
-			philo->perso->fork += 2;
-			sem_post(philo->perso->s_fork);
-			if (philo->perso->if_die == 1)
-				return (0);
-			philo_sleep(philo);
-			if (philo->perso->if_die == 1)
-				return (0);
-			display(philo->name_philo, " is thinking", philo);
 		}
 	}
 	return (0);

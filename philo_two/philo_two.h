@@ -32,16 +32,12 @@ typedef struct		s_philo
 	int nb_eat;
 	int end_eat;
 	int first_eat;
-	//pas de limite de repas
 	int	no_limite;
-	//mort du philo
 	int dead;
-	// Time
 	struct timeval ms_eat;
 	struct timeval ms_sleep;
 	struct timeval ms_think;
 	struct timeval ms_died;
-	//
 	struct timeval t_philo;
 	struct timeval start_time;
 	struct s_perso *perso;
@@ -61,6 +57,7 @@ typedef struct		s_perso
 
 typedef struct		s_init
 {
+	int				ret;
 	t_philo			*philo;
 	t_perso			*perso;
 }					t_init;
@@ -71,11 +68,14 @@ int		ft_atoi(char *nptr);
 void	ft_putstr(char *str);
 void	*routine(void *p_data);
 void	*philo_eat(t_philo *philo);
-void	*philo_sleep(t_philo *philo);
+void	philo_sleep(t_philo *philo);
 void	*philo_think(t_philo *philo);
 long	ft_conv_to_ms(struct timeval philo_time, struct timeval start_time);
 int		ft_check_die(t_philo *philo);
 void	display(int name_philo, char *message, t_philo *philo);
 void	ft_putnbr(int n);
-int		ft_init_var(int nb_philo, t_philo *philo, char **argv, int i, struct timeval start_time);
+int		ft_init_var(int nb_philo, t_philo *philo, char **argv, int i);
 int		ft_malloc_struct(int nb_philo, t_init *init);
+void	ft_init_two(int nb_p, t_init *init, char **argv, struct timeval	st);
+void	*ft_check_die_two(t_philo *philo);
+int		take_fork(t_philo *philo);

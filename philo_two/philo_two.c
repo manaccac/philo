@@ -1,72 +1,81 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo_two.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jdel-ros <jdel-ros@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/15 11:49:41 by jdel-ros          #+#    #+#             */
+/*   Updated: 2021/02/15 11:50:15 by jdel-ros         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo_two.h"
 
-static int			check_arg(int argc, char **argv)
+static int		check_arg(int argc, char **argv)
 {
 	if (argc < 5 || argc > 6)
 		return (put_error(ERR_ARG));
-	if (ft_atoi(argv[1]) > 200 || ft_atoi(argv[1]) <= 0)
+	if (ft_atoi(argv[1]) > 200 || ft_atoi(argv[1]) <= 1)
 		return (put_error(ERR_ARG));
 	if (ft_atoi(argv[2]) < 60 || ft_atoi(argv[3]) < 60 || ft_atoi(argv[4]) < 60)
 		return (put_error(ERR_ARG));
 	return (1);
 }
 
-static void             ft_free(t_init *init)
+static void		ft_free(t_init *init)
 {
-    free(init->perso->eating);
+	free(init->perso->eating);
 	free(init->perso->fork_perso);
 	free(init->philo);
 	free(init->perso);
 }
 
+void			ft_thread(int nb_philo, pthread_t td_p[nb_philo], t_init *init)
+{
+	int i;
+
+	i = 0;
+	while (i < nb_philo)
+	{
+		init->ret = pthread_create(&td_p[i],
+									NULL, routine, &init->philo[i]);
+		i++;
+	}
+	i = 0;
+	while (i < nb_philo)
+	{
+		pthread_join(td_p[i], NULL);
+		i++;
+	}
+}
+
+static int		return_nb_philo(char **argv)
+{
+	int ret;
+
+	ret = ft_atoi(argv[1]);
+	return (ret);
+}
+
 int				main(int argc, char **argv)
 {
-	t_init init;
-	struct timeval start_time;
-	int nb_philo;
-	int i;
+	t_init			init;
+	struct timeval	start_time;
+	int				nb_philo;
+	int				i;
+	pthread_t		thread_philo[return_nb_philo(argv)];
 
 	if (check_arg(argc, argv) == 0)
 		return (0);
 	nb_philo = ft_atoi(argv[1]);
 	i = 0;
-	if (nb_philo <= 1)
-	{
-		ft_putstr("Le nombre de philo doit être supérieur a 1");
-		return (-1);
-	}
 	if (ft_malloc_struct(nb_philo, &init) == -1)
 		return (-1);
 	gettimeofday(&start_time, NULL);
-	while (i < nb_philo)
-	{
-		ft_init_var(nb_philo, init.philo, argv, i, start_time);
-		gettimeofday(&init.philo[i].ms_died, NULL);
-		init.philo[i].perso = init.perso;
-		init.philo[i].perso->fork_perso[i] = 1;
-		init.philo[i].perso->eating[i] = 0;
-		i++;
-	}
-	pthread_t thread_philo[nb_philo];
-	sem_unlink("/fork");
-	sem_unlink("/die");
-	sem_unlink("/talk");
-	init.perso->s_talk = sem_open("/talk", O_CREAT | O_EXCL, S_IRWXU, 1);
-	init.perso->s_die = sem_open("/die", O_CREAT | O_EXCL, S_IRWXU, 1);
-	init.perso->s_fork = sem_open("/fork", O_CREAT | O_EXCL, S_IRWXU, nb_philo + 1);
-	int ret = 0;
-	i = 0;
-	while (i < nb_philo)
-	{
-		ret = pthread_create(&thread_philo[i], NULL, routine, &init.philo[i]);
-		i++;
-	}
-	i = 0;
-	while (i < nb_philo)
-	{
-		pthread_join(thread_philo[i], NULL);
-		i++;
-	}
+	ft_init_two(nb_philo, &init, argv, start_time);
+	init.ret = 0;
+	ft_thread(nb_philo, thread_philo, &init);
 	ft_free(&init);
-	return (ret);
+	return (init.ret);
 }

@@ -1,74 +1,85 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo_one.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jdel-ros <jdel-ros@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/15 10:03:38 by jdel-ros          #+#    #+#             */
+/*   Updated: 2021/02/15 11:30:42 by jdel-ros         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo_one.h"
 
-static int             check_arg(int argc, char **argv)
+static int		check_arg(int argc, char **argv)
 {
-    if (argc < 5 || argc > 6)
-        return (put_error(ERR_ARG));
-    if (ft_atoi(argv[1]) > 200 || ft_atoi(argv[1]) <= 0)
-        return (put_error(ERR_ARG));
+	if (argc < 5 || argc > 6)
+		return (put_error(ERR_ARG));
+	if (ft_atoi(argv[1]) > 200 || ft_atoi(argv[1]) <= 1)
+		return (put_error(ERR_ARG));
 	if (ft_atoi(argv[2]) < 60 || ft_atoi(argv[3]) < 60 || ft_atoi(argv[4]) < 60)
-        return (put_error(ERR_ARG));
+		return (put_error(ERR_ARG));
 	return (1);
 }
 
-static void             ft_free(t_init *init)
+static void		ft_free(t_init *init)
 {
-    free(init->perso->l_fork);
-    free(init->perso->talk);
-    free(init->perso->r_fork);
-    free(init->perso->die);
-    free(init->perso->eating);
-	free(init->perso->fork_perso);
+	free(init->p->l_fork);
+	free(init->p->talk);
+	free(init->p->r_fork);
+	free(init->p->die);
+	free(init->p->eating);
+	free(init->p->fp);
 	free(init->philo);
-	free(init->perso);
+	free(init->p);
 }
 
-int            main(int argc, char **argv)
+void			ft_thread(int nb_philo, pthread_t td_p[nb_philo], t_init *init)
 {
-    t_init init;
-    struct timeval start_time;
-    int nb_philo;
-    int i;
-    
-    if (check_arg(argc, argv) == 0)
-        return (0);
-    nb_philo = ft_atoi(argv[1]);
-    i = 0;
-    if (nb_philo <= 1)
-    {
-        ft_putstr("Le nombre de philo doit être supérieur a 1");
-        return (-1);
-    }
-    if (ft_malloc_struct(nb_philo, &init) == -1)
-        return (-1);
-    gettimeofday(&start_time, NULL);
-    while (i < nb_philo)
-    {
-		ft_init_var(nb_philo, init.philo, argv, i, start_time);
-		gettimeofday(&init.philo[i].ms_died, NULL);
-		init.philo[i].perso = init.perso;
-		init.philo[i].perso->fork_perso[i] = 1;
-		init.philo[i].perso->eating[i] = 0;
-        i++;
-    }
-    pthread_t thread_philo[nb_philo];
-	pthread_mutex_init(init.perso->l_fork, NULL);
-	pthread_mutex_init(init.perso->talk, NULL);
-	pthread_mutex_init(init.perso->r_fork, NULL);
-	pthread_mutex_init(init.perso->die, NULL);
-    int ret = 0;
-    i = 0;
-    while (i < nb_philo)
-    {
-        ret = pthread_create(&thread_philo[i], NULL, routine, &init.philo[i]);
-        i++;
-    }
-    i = 0;
-    while (i < nb_philo)
-    {
-        pthread_join(thread_philo[i], NULL);
-        i++;
-    }
-    ft_free(&init);
-    return (ret);
+	int i;
+
+	i = 0;
+	while (i < nb_philo)
+	{
+		init->ret = pthread_create(&td_p[i],
+									NULL, routine, &init->philo[i]);
+		i++;
+	}
+	i = 0;
+	while (i < nb_philo)
+	{
+		pthread_join(td_p[i], NULL);
+		i++;
+	}
+}
+
+static int		return_nb_philo(char **argv)
+{
+	int ret;
+
+	ret = ft_atoi(argv[1]);
+	return (ret);
+}
+
+int				main(int argc, char **argv)
+{
+	t_init			init;
+	struct timeval	start_time;
+	int				nb_philo;
+	int				i;
+	pthread_t		thread_philo[return_nb_philo(argv)];
+
+	if (check_arg(argc, argv) == 0)
+		return (0);
+	nb_philo = ft_atoi(argv[1]);
+	i = 0;
+	if (ft_malloc_struct(nb_philo, &init) == -1)
+		return (-1);
+	gettimeofday(&start_time, NULL);
+	ft_init_two(nb_philo, &init, argv, start_time);
+	init.ret = 0;
+	ft_thread(nb_philo, thread_philo, &init);
+	ft_free(&init);
+	return (init.ret);
 }

@@ -1,131 +1,65 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   routine.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jdel-ros <jdel-ros@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/15 10:45:17 by jdel-ros          #+#    #+#             */
+/*   Updated: 2021/02/15 11:30:14 by jdel-ros         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo_one.h"
 
-void		*routine(void *p_data)
+void		*routine_no_limit(t_philo *philo)
 {
-	t_philo *philo = p_data;
-	while (philo->no_limite == 0 && philo->nb_eat > 0 && philo->perso->if_die == 0)
+	while (philo->p->if_die == 0)
 	{
 		usleep(10);
 		if (ft_check_die(philo) == 1)
+			return (ft_check_die_two(philo));
+		else if (philo->p->fork / 2 >= 1)
 		{
-			pthread_mutex_lock(philo->perso->die);
-			philo->philo_die = 1;
-			if (philo->perso->if_die == 0)
+			if ((philo->p->fp[philo->np - 1] == 1 &&
+					philo->p->fp[philo->np] == 1) ||
+				(philo->np == 0 &&
+				(philo->p->fp[philo->nb_philo - 1] == 1
+				&& philo->p->fp[philo->np] == 1)))
 			{
-				philo->perso->if_die = 1;
-				display(philo->name_philo, " died", philo);
-			}
-			pthread_mutex_unlock(philo->perso->die);
-			return (0);
-		}
-		if (philo->perso->fork / 2 >= 1)
-		{
-			if ((philo->perso->fork_perso[philo->name_philo - 1] == 1 && philo->perso->fork_perso[philo->name_philo] == 1) ||
-				(philo->name_philo == 0 && (philo->perso->fork_perso[philo->nb_philo - 1] == 1 && philo->perso->fork_perso[philo->name_philo] == 1)))
-			{
-				if (philo->perso->fork / 2 >= 1)
+				if (philo->p->fork / 2 >= 1)
 				{
-					philo->perso->fork_perso[philo->name_philo] = 0;
-					if (philo->name_philo != 0)
-						philo->perso->fork_perso[philo->name_philo - 1] = 0;
-					else
-						philo->perso->fork_perso[philo->nb_philo - 1] = 0;
-					if (philo->perso->if_die == 1)
+					if (routine_two(philo) == 0)
 						return (0);
-					pthread_mutex_lock(&philo->perso->l_fork[philo->name_philo]);
-					display(philo->name_philo, " has taken a fork", philo);
-					philo->perso->fork -= 1;
-					pthread_mutex_lock(&philo->perso->r_fork[philo->name_philo]);
-					display(philo->name_philo, " has taken a fork", philo);
-					philo->perso->fork -= 1;
-					if (philo->perso->if_die == 1)
-					{
-						pthread_mutex_unlock(&philo->perso->l_fork[philo->name_philo]);
-						pthread_mutex_unlock(&philo->perso->r_fork[philo->name_philo]);
-						return (0);
-					}
-					philo_eat(philo);
-					pthread_mutex_unlock(&philo->perso->l_fork[philo->name_philo]);
-					pthread_mutex_unlock(&philo->perso->r_fork[philo->name_philo]);
-					philo->perso->fork += 2;
-					philo->perso->fork_perso[philo->name_philo] = 1;
-					if (philo->name_philo != 0)
-						philo->perso->fork_perso[philo->name_philo - 1] = 1;
-					else
-						philo->perso->fork_perso[philo->nb_philo - 1] = 1;
-					if (philo->perso->if_die == 1)
-						return (0);
-					if (philo->nb_eat > 0)
-					{
-						philo_sleep(philo);
-						if (philo->perso->if_die == 1)
-							return (0);
-						display(philo->name_philo, " is thinking", philo);
-					}
 				}
 			}
 		}
 	}
-	//
-	//
-	//
-	//
-	while (philo->no_limite == 1 && philo->perso->if_die == 0)
+	return (0);
+}
+
+void		*routine(void *p_data)
+{
+	t_philo *ph;
+
+	ph = p_data;
+	if (ph->no_limite == 1)
+		return (routine_no_limit(ph));
+	while (ph->nb_eat > 0 && ph->p->if_die == 0)
 	{
 		usleep(10);
-		if (ft_check_die(philo) == 1)
+		if (ft_check_die(ph) == 1)
+			return (ft_check_die_two(ph));
+		else if (ph->p->fork / 2 >= 1)
 		{
-			pthread_mutex_lock(philo->perso->die);
-			philo->philo_die = 1;
-			if (philo->perso->if_die == 0)
+			if ((ph->p->fp[ph->np - 1] == 1 && ph->p->fp[ph->np] == 1) ||
+				(ph->np == 0 && (ph->p->fp[ph->nb_philo - 1] == 1 &&
+				ph->p->fp[ph->np] == 1)))
 			{
-				philo->perso->if_die = 1;
-				display(philo->name_philo, " died", philo);
-			}
-			pthread_mutex_unlock(philo->perso->die);
-			return (0);
-		}
-		if (philo->perso->fork / 2 >= 1)
-		{
-			if ((philo->perso->fork_perso[philo->name_philo - 1] == 1 && philo->perso->fork_perso[philo->name_philo] == 1) ||
-				(philo->name_philo == 0 && (philo->perso->fork_perso[philo->nb_philo - 1] == 1 && philo->perso->fork_perso[philo->name_philo] == 1)))
-			{
-				if (philo->perso->fork / 2 >= 1)
+				if (ph->p->fork / 2 >= 1)
 				{
-					philo->perso->fork_perso[philo->name_philo] = 0;
-					if (philo->name_philo != 0)
-						philo->perso->fork_perso[philo->name_philo - 1] = 0;
-					else
-						philo->perso->fork_perso[philo->nb_philo - 1] = 0;
-					if (philo->perso->if_die == 1)
+					if (routine_two(ph) == 0)
 						return (0);
-					pthread_mutex_lock(&philo->perso->l_fork[philo->name_philo]);
-					display(philo->name_philo, " has taken a fork", philo);
-					philo->perso->fork -= 1;
-					pthread_mutex_lock(&philo->perso->r_fork[philo->name_philo]);
-					display(philo->name_philo, " has taken a fork", philo);
-					philo->perso->fork -= 1;
-					if (philo->perso->if_die == 1)
-					{
-						pthread_mutex_unlock(&philo->perso->l_fork[philo->name_philo]);
-						pthread_mutex_unlock(&philo->perso->r_fork[philo->name_philo]);
-						return (0);
-					}
-					philo_eat(philo);
-					pthread_mutex_unlock(&philo->perso->l_fork[philo->name_philo]);
-					pthread_mutex_unlock(&philo->perso->r_fork[philo->name_philo]);
-					philo->perso->fork += 2;
-					philo->perso->fork_perso[philo->name_philo] = 1;
-					if (philo->name_philo != 0)
-						philo->perso->fork_perso[philo->name_philo - 1] = 1;
-					else
-						philo->perso->fork_perso[philo->nb_philo - 1] = 1;
-					if (philo->perso->if_die == 1)
-						return (0);
-					philo_sleep(philo);
-					if (philo->perso->if_die == 1)
-						return (0);
-					display(philo->name_philo, " is thinking", philo);
 				}
 			}
 		}

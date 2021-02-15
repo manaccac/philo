@@ -25,7 +25,7 @@ typedef struct		s_philo
 	int	satiate;
 	int philo_die;
 	int nb_philo;
-	int name_philo;
+	int np;
 	int time_eat;
 	int time_sleep;
 	int	time_think;
@@ -55,7 +55,7 @@ typedef struct		s_perso
 	int *eating;
 	int if_die;
 	int fork;
-	int *fork_perso;
+	int *fp;
 	t_philo *philo;
 	sem_t *s_talk;
 	sem_t *s_die;
@@ -78,7 +78,7 @@ void	*philo_sleep(t_philo *philo);
 void	*philo_think(t_philo *philo);
 long	ft_conv_to_ms(struct timeval philo_time, struct timeval start_time);
 int		ft_check_die(t_philo *philo);
-void	display(int name_philo, char *message, t_philo *philo);
+void	display(int np, char *message, t_philo *philo);
 void	ft_putnbr(int n);
 int		ft_init_var(int nb_philo, t_philo *philo, char **argv, int i, struct timeval start_time);
 int		ft_malloc_struct(int nb_philo, t_init *init);

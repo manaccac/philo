@@ -1,8 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jdel-ros <jdel-ros@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/15 10:00:39 by jdel-ros          #+#    #+#             */
+/*   Updated: 2021/02/15 10:00:40 by jdel-ros         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo_one.h"
 
-void		ft_putstr(char *str)
+void			ft_putstr(char *str)
 {
-	int i = 0;
+	int i;
+
+	i = 0;
 	while (str[i])
 	{
 		write(1, &str[i], 1);
@@ -10,7 +24,7 @@ void		ft_putstr(char *str)
 	}
 }
 
-int		ft_atoi(char *nptr)
+int				ft_atoi(char *nptr)
 {
 	int				i;
 	int				a;
@@ -33,12 +47,12 @@ int		ft_atoi(char *nptr)
 	return (res * a);
 }
 
-static void	ft_putchar(char c)
+static void		ft_putchar(char c)
 {
 	write(1, &c, 1);
 }
 
-void	ft_putnbr(int n)
+void			ft_putnbr(int n)
 {
 	{
 		if (n >= 0 && n <= 9)
@@ -56,7 +70,7 @@ void	ft_putnbr(int n)
 	}
 }
 
-int			put_error(char *err)
+int				put_error(char *err)
 {
 	ft_putstr(err);
 	return (0);

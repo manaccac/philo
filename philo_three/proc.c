@@ -6,7 +6,7 @@
 /*   By: jdel-ros <jdel-ros@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 13:59:47 by jdel-ros          #+#    #+#             */
-/*   Updated: 2021/02/10 14:38:23 by jdel-ros         ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 09:23:48 by jdel-ros         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		proc(t_philo *philo, int nb_philo)
 			return (1);
 		else if (philo->pid == 0)
 			routine(&philo[i]);
-		usleep(100);
+		// usleep(35);
 		i++;
 	}
 	return (0);
