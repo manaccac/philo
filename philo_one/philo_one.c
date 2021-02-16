@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_one.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdel-ros <jdel-ros@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: manaccac <manaccac@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 09:05:33 by jdel-ros          #+#    #+#             */
-/*   Updated: 2021/02/16 09:31:41 by jdel-ros         ###   ########lyon.fr   */
+/*   Updated: 2021/02/16 11:41:40 by manaccac         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 static int		check_arg(int argc, char **argv)
 {
+	if (argv[1][0] == '-')
+		return (put_error(ERR_ARG));
 	if (argc < 5 || argc > 6)
 		return (put_error(ERR_ARG));
-	if (ft_atoi(argv[1]) > 200 || ft_atoi(argv[1]) <= 1)
+	if (ft_atoi(argv[1]) > 200 || ft_atoi(argv[1]) < 1)
 		return (put_error(ERR_ARG));
 	if (ft_atoi(argv[2]) < 60 || ft_atoi(argv[3]) < 60 || ft_atoi(argv[4]) < 60)
 		return (put_error(ERR_ARG));
@@ -58,8 +60,12 @@ static int		return_nb_philo(char **argv)
 {
 	int ret;
 
-	ret = ft_atoi(argv[1]);
-	return (ret);
+	if (argv[1][0] != '-')
+	{
+		ret = ft_atoi(argv[1]);
+		return (ret);
+	}
+	return(0);
 }
 
 int				main(int argc, char **argv)
