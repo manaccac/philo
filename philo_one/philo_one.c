@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jdel-ros <jdel-ros@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/15 10:03:38 by jdel-ros          #+#    #+#             */
-/*   Updated: 2021/02/15 11:30:42 by jdel-ros         ###   ########lyon.fr   */
+/*   Created: 2021/02/16 09:05:33 by jdel-ros          #+#    #+#             */
+/*   Updated: 2021/02/16 09:31:41 by jdel-ros         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,11 @@ static int		return_nb_philo(char **argv)
 
 int				main(int argc, char **argv)
 {
-	t_init			init;
-	struct timeval	start_time;
-	int				nb_philo;
-	int				i;
-	pthread_t		thread_philo[return_nb_philo(argv)];
+	t_init				init;
+	struct timeval		start_time;
+	int					nb_philo;
+	int					i;
+	pthread_t			thread_philo[return_nb_philo(argv)];
 
 	if (check_arg(argc, argv) == 0)
 		return (0);

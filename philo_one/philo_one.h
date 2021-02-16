@@ -6,7 +6,7 @@
 /*   By: jdel-ros <jdel-ros@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:27:35 by jdel-ros          #+#    #+#             */
-/*   Updated: 2021/02/15 11:32:45 by jdel-ros         ###   ########lyon.fr   */
+/*   Updated: 2021/02/16 10:42:41 by jdel-ros         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,10 @@ void				ft_init_two(int nb_p, t_init *init, char **argv,
 								struct timeval	st);
 void				*ft_check_die_two(t_philo *philo);
 int					take_fork(t_philo *philo);
-void				return_fork(t_philo *philo);
+int					return_fork(t_philo *philo);
 int					routine_two(t_philo *philo);
+void				ft_init_two(int nb_p, t_init *init, char **argv,
+								struct timeval st);
+int					routine_two_no_l(t_philo *philo);
 
 #endif
