@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_die.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdel-ros <jdel-ros@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: manaccac <manaccac@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 10:40:23 by manaccac          #+#    #+#             */
-/*   Updated: 2021/02/17 10:19:00 by jdel-ros         ###   ########lyon.fr   */
+/*   Updated: 2021/02/17 11:31:27 by manaccac         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		ft_check_die(t_philo *philo)
 {
 	struct timeval temp_dead;
 	gettimeofday(&temp_dead, NULL);
-	if (ft_conv_to_ms(temp_dead, philo->ms_died) > philo->time_die)
+	if (ft_conv_to_ms(temp_dead, philo->ms_died) >= philo->time_die)
 		return(1);
 	else
 		return(0);
