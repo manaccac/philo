@@ -6,7 +6,7 @@
 /*   By: jdel-ros <jdel-ros@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 13:59:47 by jdel-ros          #+#    #+#             */
-/*   Updated: 2021/02/17 09:09:19 by jdel-ros         ###   ########lyon.fr   */
+/*   Updated: 2021/02/17 12:46:39 by jdel-ros         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,12 @@ int		proc(t_init *init, int nb_philo)
 		i++;
 	}
 	i = 0;
-	wait(&status);
+	while (i < nb_philo)
+	{
+		waitpid(init->philo[i].pid, &status, 0);
+		i++;
+	}
+	i = 0;
 	while (i < nb_philo)
 	{
 		kill(init->philo[i].pid, 15);

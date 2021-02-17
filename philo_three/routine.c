@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manaccac <manaccac@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: jdel-ros <jdel-ros@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 13:48:32 by jdel-ros          #+#    #+#             */
-/*   Updated: 2021/02/17 11:14:45 by manaccac         ###   ########lyon.fr   */
+/*   Updated: 2021/02/17 12:39:49 by jdel-ros         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void		*routine(t_philo *philo, t_init *init)
 				return (0);
 			display(philo->np, " is thinking", philo, init);
 		}
+		// dprintf(1, "nb_eat : %d pour philo %d\n", philo->nb_eat, philo->np + 1);
 	}
 	//
 	while (philo->no_limite == 1 && philo->if_die == 0)
