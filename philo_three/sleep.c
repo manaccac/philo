@@ -7,9 +7,11 @@ void		*philo_sleep(t_philo *philo, t_init *init)
 	i = 0;
 	struct timeval start_sleep;
 	gettimeofday(&start_sleep, NULL);
+	usleep(100);
 	display(philo->np, " is sleeping", philo, init);
 	while (i != 1)
 	{
+		usleep(10);
 		gettimeofday(&philo->ms_sleep, NULL);
 		if (ft_check_die(philo) == 1)
 		{
