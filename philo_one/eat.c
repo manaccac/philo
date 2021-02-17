@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   eat.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdel-ros <jdel-ros@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: manaccac <manaccac@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 09:02:44 by jdel-ros          #+#    #+#             */
-/*   Updated: 2021/02/16 09:33:28 by jdel-ros         ###   ########lyon.fr   */
+/*   Updated: 2021/02/17 12:44:15 by manaccac         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void			*philo_eat(t_philo *philo)
 	struct timeval	start_eat;
 
 	i = 0;
-	gettimeofday(&philo->ms_died, NULL);
 	display(philo->np, " is eating", philo);
+	gettimeofday(&philo->ms_died, NULL);
 	if (philo->no_limite == 1)
 		return (philo_eat_no_limite(philo, i));
 	if (philo->nb_eat >= 0)

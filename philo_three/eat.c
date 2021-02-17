@@ -4,8 +4,8 @@ void		*philo_eat(t_philo *philo, t_init *init)
 {
 	int i;
 	i = 0;
-	gettimeofday(&philo->ms_died, NULL);
 	display(philo->np, " is eating", philo, init);
+	gettimeofday(&philo->ms_died, NULL);
 	if (philo->nb_eat >= 0 && philo->no_limite == 0)
 	{
 		struct timeval start_eat;
