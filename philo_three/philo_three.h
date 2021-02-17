@@ -17,6 +17,7 @@
 #include <sys/time.h>
 #include <sys/types.h>
 #include <semaphore.h>
+#include <signal.h>
 
 #define ERR_ARG "Error: argument\n"
 
@@ -46,39 +47,32 @@ typedef struct		s_philo
 	//
 	struct timeval t_philo;
 	struct timeval start_time;
-	struct s_perso *perso;
-}					t_philo;
-
-typedef struct		s_perso
-{
-	// int i;
-	int *eating;
 	int if_die;
 	int fork;
-	int *fp;
-	t_philo *philo;
-	sem_t *s_talk;
-	sem_t *s_die;
-	sem_t *s_fork;
-}					t_perso;
+}					t_philo;
 
 typedef struct		s_init
 {
-	t_philo			*philo;
-	t_perso			*perso;
+	int *eating;
+	int *fp;
+	sem_t *s_eat;
+	sem_t *s_talk;
+	sem_t *s_die;
+	sem_t *s_fork;
+	t_philo		*philo;
 }					t_init;
 
-int		proc(t_philo *philo, int nb_philo);
+int		proc(t_init *init, int nb_philo);
 int		put_error(char *err);
 int		ft_atoi(char *nptr);
 void	ft_putstr(char *str);
-void	*routine(t_philo *philo);
-void	*philo_eat(t_philo *philo);
-void	*philo_sleep(t_philo *philo);
+void	*routine(t_philo *philo, t_init *init);
+void	*philo_eat(t_philo *philo, t_init *init);
+void	*philo_sleep(t_philo *philo, t_init *init);
 void	*philo_think(t_philo *philo);
 long	ft_conv_to_ms(struct timeval philo_time, struct timeval start_time);
 int		ft_check_die(t_philo *philo);
-void	display(int np, char *message, t_philo *philo);
+void	display(int np, char *message, t_philo *philo, t_init *init);
 void	ft_putnbr(int n);
-int		ft_init_var(int nb_philo, t_philo *philo, char **argv, int i, struct timeval start_time);
+int		ft_init_var(t_init *init, int nb_philo, t_philo *philo, char **argv, int i, struct timeval start_time);
 int		ft_malloc_struct(int nb_philo, t_init *init);

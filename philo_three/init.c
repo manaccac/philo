@@ -1,8 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jdel-ros <jdel-ros@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/16 15:04:06 by jdel-ros          #+#    #+#             */
+/*   Updated: 2021/02/17 09:10:48 by jdel-ros         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "philo_three.h"
 
-int			ft_init_var(int nb_philo, t_philo *philo, char **argv, int i, struct timeval start_time)
+int			ft_init_var(t_init *init, int nb_philo, t_philo *philo, char **argv, int i, struct timeval start_time)
 {
+	(void)init;
+	// philo[i].s_die = init->s_die;
+	// philo[i].s_fork = init->s_fork;
+	// philo[i].s_talk = init->s_talk;
+	// philo[i].s_eat = init->s_eat;
 	philo[i].start_time = start_time;
 	philo[i].nb_philo = nb_philo;
 	philo[i].time_die = ft_atoi(argv[2]);
@@ -27,16 +43,11 @@ int			ft_malloc_struct(int nb_philo, t_init *init)
 {
 	if (!(init->philo = malloc(sizeof(t_philo) * nb_philo + 1)))
 	    return (-1);
-	if (!(init->perso = malloc(sizeof(t_perso))))
-		return (-1);
-	init->p->fork = nb_philo;
-	init->p->if_die = 0;
-	// init->p->i = 0;
-	if (!(init->p->eating = (int *)malloc(sizeof(int) * nb_philo + 1)))
+	init->philo->fork = nb_philo;
+	init->philo->if_die = 0;
+	if (!(init->eating = (int *)malloc(sizeof(int) * nb_philo + 1)))
 	    return (-1);
-	// if (!(init->philo->pid = (int *)malloc(sizeof(int) * nb_philo + 1)))
-	// 	return (-1);
-	if (!(init->p->fp = (int *)malloc(sizeof(int) * nb_philo + 1)))
+	if (!(init->fp = (int *)malloc(sizeof(int) * nb_philo + 1)))
 		return (-1);
 	return (0);
 }

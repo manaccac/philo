@@ -6,23 +6,33 @@
 /*   By: jdel-ros <jdel-ros@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 13:59:47 by jdel-ros          #+#    #+#             */
-/*   Updated: 2021/02/15 09:23:48 by jdel-ros         ###   ########lyon.fr   */
+/*   Updated: 2021/02/17 09:09:19 by jdel-ros         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_three.h"
 
-int		proc(t_philo *philo, int nb_philo)
+int		proc(t_init *init, int nb_philo)
 {
 	int i = 0;
+	int status = 0;
 	while (i < nb_philo)
 	{
-		philo[i].pid = fork();
-		if (philo->pid < 0)
-			return (1);
-		else if (philo->pid == 0)
-			routine(&philo[i]);
-		// usleep(35);
+		init->philo[i].pid = fork();
+		if (init->philo[i].pid == -1)
+			exit(1);
+		if (init->philo[i].pid == 0)
+		{
+			routine(&init->philo[i], init);
+			exit(0);
+		}
+		i++;
+	}
+	i = 0;
+	wait(&status);
+	while (i < nb_philo)
+	{
+		kill(init->philo[i].pid, 15);
 		i++;
 	}
 	return (0);

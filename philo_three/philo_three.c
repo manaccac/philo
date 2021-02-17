@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_three.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manaccac <manaccac@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: jdel-ros <jdel-ros@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 13:52:35 by jdel-ros          #+#    #+#             */
-/*   Updated: 2021/02/16 11:44:26 by manaccac         ###   ########lyon.fr   */
+/*   Updated: 2021/02/17 09:33:09 by jdel-ros         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,23 +27,13 @@ static int			check_arg(int argc, char **argv)
 
 static void			ft_free(t_init *init)
 {
-    free(init->p->eating);
-	free(init->p->fp);
+    // free(init->eating);
+	// free(init->fp);
 	free(init->philo);
-	free(init->perso);
+	// free(init->);
 }
 
-/*static int		return_nb_philo(char **argv)
-{
-	int ret;
 
-	if (argv[1][0] != '-')
-	{
-		ret = ft_atoi(argv[1]);
-		return (ret);
-	}
-	return(0);
-}*/
 
 int				main(int argc, char **argv)
 {
@@ -56,31 +46,27 @@ int				main(int argc, char **argv)
 		return (0);
 	nb_philo = ft_atoi(argv[1]);
 	i = 0;
-	if (nb_philo <= 1)
-	{
-		ft_putstr("Le nombre de philo doit être supérieur a 1");
-		return (-1);
-	}
 	if (ft_malloc_struct(nb_philo, &init) == -1)
 		return (-1);
 	gettimeofday(&start_time, NULL);
 	while (i < nb_philo)
 	{
-		ft_init_var(nb_philo, init.philo, argv, i, start_time);
+		ft_init_var(&init, nb_philo, init.philo, argv, i, start_time);
 		gettimeofday(&init.philo[i].ms_died, NULL);
-		init.philo[i].perso = init.perso;
-		init.philo[i].p->fp[i] = 1;
-		init.philo[i].p->eating[i] = 0;
+		// init.philo[i].p = init.perso;
+		// init.philo[i].p->fp[i] = 1;
+		// init.philo[i].p->eating[i] = 0;
 		i++;
 	}
-	// pthread_t thread_philo[nb_philo];
 	sem_unlink("/fork");
 	sem_unlink("/die");
 	sem_unlink("/talk");
-	init.p->s_talk = sem_open("/talk", O_CREAT | O_EXCL, S_IRWXU, 1);
-	init.p->s_die = sem_open("/die", O_CREAT | O_EXCL, S_IRWXU, 1);
-	init.p->s_fork = sem_open("/fork", O_CREAT | O_EXCL, S_IRWXU, nb_philo + 1);
-	proc(init.philo, nb_philo);
+	sem_unlink("/eat");
+	init.s_talk = sem_open("/talk", O_CREAT | O_EXCL, S_IRWXU, 1);
+	init.s_eat = sem_open("/eat", O_CREAT | O_EXCL, S_IRWXU, nb_philo / 2);
+	init.s_die = sem_open("/die", O_CREAT | O_EXCL, S_IRWXU, 1);
+	init.s_fork = sem_open("/fork", O_CREAT | O_EXCL, S_IRWXU, nb_philo / 2);
+	proc(&init, nb_philo);
 	ft_free(&init);
 	return (0);
 }
