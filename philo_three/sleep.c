@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   sleep.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manaccac <manaccac@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: jdel-ros <jdel-ros@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 12:35:51 by jdel-ros          #+#    #+#             */
-/*   Updated: 2021/02/17 12:55:52 by manaccac         ###   ########lyon.fr   */
+/*   Updated: 2021/02/17 14:17:38 by jdel-ros         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_three.h"
 
-void		*philo_sleep(t_philo *philo, t_init *init)
+int			philo_sleep(t_philo *philo, t_init *init)
 {
 	int i;
 	i = 0;
@@ -33,7 +33,7 @@ void		*philo_sleep(t_philo *philo, t_init *init)
 				philo->if_die = 1;
 				display(philo->np, " died", philo, init);
 			}
-			return (0);
+			return (1);
 		}
 		if (ft_conv_to_ms(philo->ms_sleep, start_sleep) >= philo->time_sleep || philo->if_die == 1)
 			i = 1;

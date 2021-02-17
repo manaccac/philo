@@ -6,7 +6,7 @@
 /*   By: jdel-ros <jdel-ros@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 13:59:47 by jdel-ros          #+#    #+#             */
-/*   Updated: 2021/02/17 12:46:39 by jdel-ros         ###   ########lyon.fr   */
+/*   Updated: 2021/02/17 14:44:23 by jdel-ros         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int		proc(t_init *init, int nb_philo)
 {
 	int i = 0;
 	int status = 0;
+
 	while (i < nb_philo)
 	{
 		init->philo[i].pid = fork();
@@ -23,22 +24,36 @@ int		proc(t_init *init, int nb_philo)
 			exit(1);
 		if (init->philo[i].pid == 0)
 		{
-			routine(&init->philo[i], init);
-			exit(0);
+			if (routine(&init->philo[i], init) == 0)
+				exit(0);
+			else
+				exit(1);
 		}
 		i++;
 	}
-	i = 0;
-	while (i < nb_philo)
+	int u = 0;
+	while (u < nb_philo)
 	{
-		waitpid(init->philo[i].pid, &status, 0);
-		i++;
-	}
-	i = 0;
-	while (i < nb_philo)
-	{
-		kill(init->philo[i].pid, 15);
-		i++;
+		i = 0;
+		int y = 0;
+		int bl = 0;
+		waitpid(init->philo[u].pid, &status, 0);
+		if (WEXITSTATUS(status))
+			bl = 1;
+		if (WEXITSTATUS(status) == 0)
+			y++;
+		if (y == nb_philo)
+			bl = 1;
+		//printf("%d : %d : %d \n", WEXITSTATUS(status), bl, y);
+		i = 0;
+		while (bl && i < nb_philo)
+		{
+			// if (init->philo[i].pid == 0)
+			//dprintf(1, "pid = %d\n", init->philo[i].pid);
+			kill(init->philo[i].pid, 1);
+			i++;
+		}
+		u++;
 	}
 	return (0);
 }

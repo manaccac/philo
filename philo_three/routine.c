@@ -6,13 +6,13 @@
 /*   By: jdel-ros <jdel-ros@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 13:48:32 by jdel-ros          #+#    #+#             */
-/*   Updated: 2021/02/17 12:39:49 by jdel-ros         ###   ########lyon.fr   */
+/*   Updated: 2021/02/17 14:17:34 by jdel-ros         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_three.h"
 
-void		*routine(t_philo *philo, t_init *init)
+int		routine(t_philo *philo, t_init *init)
 {
 	while (philo->no_limite == 0 && philo->nb_eat > 0 && philo->if_die == 0)
 	{
@@ -26,7 +26,7 @@ void		*routine(t_philo *philo, t_init *init)
 				philo->if_die = 1;
 				display(philo->np, " died", philo, init);
 			}
-			return (0);
+			return (1);
 		}
 		sem_wait(init->s_fork);
 		display(philo->np, " has taken a fork", philo, init);
@@ -37,7 +37,7 @@ void		*routine(t_philo *philo, t_init *init)
 		{
 			philo_sleep(philo, init);
 			if (philo->if_die == 1)
-				return (0);
+				return (1);
 			display(philo->np, " is thinking", philo, init);
 		}
 		// dprintf(1, "nb_eat : %d pour philo %d\n", philo->nb_eat, philo->np + 1);
@@ -55,7 +55,7 @@ void		*routine(t_philo *philo, t_init *init)
 				philo->if_die = 1;
 				display(philo->np, " died", philo, init);
 			}
-			return (0);
+			return (1);
 		}
 		sem_wait(init->s_fork);
 		display(philo->np, " has taken a fork", philo, init);
@@ -64,7 +64,7 @@ void		*routine(t_philo *philo, t_init *init)
 		sem_post(init->s_fork);
 		philo_sleep(philo, init);
 		if (philo->if_die == 1)
-			return (0);
+			return (1);
 		display(philo->np, " is thinking", philo, init);
 	}
 	return (0);
