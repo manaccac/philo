@@ -6,7 +6,7 @@
 /*   By: jdel-ros <jdel-ros@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 13:48:32 by jdel-ros          #+#    #+#             */
-/*   Updated: 2021/02/17 09:34:20 by jdel-ros         ###   ########lyon.fr   */
+/*   Updated: 2021/02/17 10:41:25 by jdel-ros         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ void		*routine(t_philo *philo, t_init *init)
 		usleep(10);
 		if (ft_check_die(philo) == 1)
 		{
-			sem_wait(init->s_die);
+			// dprintf(1, "np = %d\n", philo->np);
+			// sem_wait(init->s_prio);
+			sem_wait(init->s_talk);
 			philo->philo_die = 1;
 			if (philo->if_die == 0)
 			{
@@ -29,7 +31,6 @@ void		*routine(t_philo *philo, t_init *init)
 			}
 			return (0);
 		}
-		// sem_wait(philo->s_eat);
 		if (philo->if_die == 1)
 			return (0);
 		philo->fork -= 2;
@@ -43,7 +44,6 @@ void		*routine(t_philo *philo, t_init *init)
 		}
 		philo_eat(philo, init);
 		sem_post(init->s_fork);
-		// sem_post(philo->s_eat);
 		philo->fork += 2;
 		if (philo->nb_eat > 0)
 		{
@@ -61,39 +61,35 @@ void		*routine(t_philo *philo, t_init *init)
 		usleep(10);
 		if (ft_check_die(philo) == 1)
 		{
-			sem_wait(init->s_die);
+			sem_wait(init->s_talk);
 			philo->philo_die = 1;
 			if (philo->if_die == 0)
 			{
 				philo->if_die = 1;
 				display(philo->np, " died", philo, init);
 			}
-			sem_post(init->s_die);
 			return (0);
 		}
-		if (philo->fork / 2 >= 1)
+		if (philo->if_die == 1)
+			return (0);
+		philo->fork -= 2;
+		sem_wait(init->s_fork);
+		display(philo->np, " has taken a fork", philo, init);
+		display(philo->np, " has taken a fork", philo, init);
+		if (philo->if_die == 1)
 		{
-			if (philo->if_die == 1)
-				return (0);
-			philo->fork -= 2;
-			sem_wait(init->s_fork);
-			display(philo->np, " has taken a fork", philo, init);
-			display(philo->np, " has taken a fork", philo, init);
-			if (philo->if_die == 1)
-			{
-				sem_post(init->s_fork);
-				return (0);
-			}
-			philo_eat(philo, init);
-			philo->fork += 2;
 			sem_post(init->s_fork);
-			if (philo->if_die == 1)
-				return (0);
-			philo_sleep(philo, init);
-			if (philo->if_die == 1)
-				return (0);
-			display(philo->np, " is thinking", philo, init);
+			return (0);
 		}
+		philo_eat(philo, init);
+		philo->fork += 2;
+		sem_post(init->s_fork);
+		if (philo->if_die == 1)
+			return (0);
+		philo_sleep(philo, init);
+		if (philo->if_die == 1)
+			return (0);
+		display(philo->np, " is thinking", philo, init);
 	}
 	return (0);
 }

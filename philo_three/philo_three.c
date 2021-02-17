@@ -6,7 +6,7 @@
 /*   By: jdel-ros <jdel-ros@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 13:52:35 by jdel-ros          #+#    #+#             */
-/*   Updated: 2021/02/17 09:33:09 by jdel-ros         ###   ########lyon.fr   */
+/*   Updated: 2021/02/17 10:22:18 by jdel-ros         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,9 @@ int				main(int argc, char **argv)
 	sem_unlink("/die");
 	sem_unlink("/talk");
 	sem_unlink("/eat");
+	sem_unlink("/prio");
 	init.s_talk = sem_open("/talk", O_CREAT | O_EXCL, S_IRWXU, 1);
+	init.s_talk = sem_open("/prio", O_CREAT | O_EXCL, S_IRWXU, 1);
 	init.s_eat = sem_open("/eat", O_CREAT | O_EXCL, S_IRWXU, nb_philo / 2);
 	init.s_die = sem_open("/die", O_CREAT | O_EXCL, S_IRWXU, 1);
 	init.s_fork = sem_open("/fork", O_CREAT | O_EXCL, S_IRWXU, nb_philo / 2);

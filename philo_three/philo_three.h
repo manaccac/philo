@@ -56,6 +56,7 @@ typedef struct		s_init
 	int *eating;
 	int *fp;
 	sem_t *s_eat;
+	sem_t *s_prio;
 	sem_t *s_talk;
 	sem_t *s_die;
 	sem_t *s_fork;
