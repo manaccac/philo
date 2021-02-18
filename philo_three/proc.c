@@ -6,7 +6,7 @@
 /*   By: manaccac <manaccac@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 13:59:47 by jdel-ros          #+#    #+#             */
-/*   Updated: 2021/02/18 10:48:59 by manaccac         ###   ########lyon.fr   */
+/*   Updated: 2021/02/18 12:40:54 by manaccac         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,30 +32,6 @@ int		proc(t_init *init, int nb_philo)
 		i++;
 	}
 	int u = 0;
-	/*
-	while (u < nb_philo + 1)
-	{
-		i = 0;
-		int y = 0;
-		int bl = 0;
-		waitpid(init->philo[u].pid, &status, 0);
-		if (WEXITSTATUS(status))
-			bl = 1;
-		if (WEXITSTATUS(status) == 0)
-			y++;
-		if (y == nb_philo)
-			bl = 1;
-		//printf("%d : %d : %d \n", WEXITSTATUS(status), bl, y);
-		i = 0;
-		while (bl && i < nb_philo + 1)
-		{
-			// if (init->philo[i].pid == 0)
-			//dprintf(1, "pid = %d\n", init->philo[i].pid);
-			kill(init->philo[i + 1].pid, 1);
-			i++;
-		}
-		u++;
-	}*/
 	int y = 0;
 	int bl = 0;
 	while (1)
