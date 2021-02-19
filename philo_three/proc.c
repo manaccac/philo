@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   proc.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manaccac <manaccac@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: jdel-ros <jdel-ros@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 13:59:47 by jdel-ros          #+#    #+#             */
-/*   Updated: 2021/02/19 09:10:08 by manaccac         ###   ########lyon.fr   */
+/*   Updated: 2021/02/19 09:59:06 by jdel-ros         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		proc(t_init *init, int nb_philo)
 	int i = 0;
 	int status = 0;
 
-	while (i < nb_philo)
+	while (i < nb_philo + 1)
 	{
 		init->philo[i + 1].pid = fork();
 		if (init->philo[i + 1].pid == -1)
@@ -34,12 +34,11 @@ int		proc(t_init *init, int nb_philo)
 		i++;
 	}
 	i = 0;
-	int u = 0;
 	int y = 0;
 	int bl = 0;
 	while (1)
 	{
-		waitpid(init->philo[u].pid, &status, 0);
+		waitpid(-1, &status, 0);
 		if (WEXITSTATUS(status))
 			bl = 1;
 		if (WEXITSTATUS(status) == 0)
