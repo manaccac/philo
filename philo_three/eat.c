@@ -6,6 +6,7 @@ void		*philo_eat(t_philo *philo, t_init *init)
 	i = 0;
 	display(philo->np, " is eating", philo, init);
 	gettimeofday(&philo->ms_died, NULL);
+	philo->reload = 1;
 	if (philo->nb_eat >= 0 && philo->no_limite == 0)
 	{
 		struct timeval start_eat;

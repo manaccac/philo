@@ -47,12 +47,17 @@ typedef struct		s_philo
 	//
 	struct timeval t_philo;
 	struct timeval start_time;
+	sem_t *s_talk;
+	sem_t *s_management;
 	int if_die;
 	int fork;
+	int reload;
 }					t_philo;
 
 typedef struct		s_init
 {
+	int i;
+	int ret;
 	int *eating;
 	int *fp;
 	sem_t *s_eat;
@@ -60,9 +65,12 @@ typedef struct		s_init
 	sem_t *s_talk;
 	sem_t *s_die;
 	sem_t *s_fork;
+	sem_t *s_management;
 	t_philo		*philo;
 }					t_init;
 
+void	*ft_check_thread(void *p_data);
+void	ft_thread(pthread_t *td_p, t_philo *philo);
 int		proc(t_init *init, int nb_philo);
 int		put_error(char *err);
 int		ft_atoi(char *nptr);
@@ -77,3 +85,7 @@ void	display(int np, char *message, t_philo *philo, t_init *init);
 void	ft_putnbr(int n);
 int		ft_init_var(t_init *init, int nb_philo, t_philo *philo, char **argv, int i, struct timeval start_time);
 int		ft_malloc_struct(int nb_philo, t_init *init);
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strdup(const char *s);
+int		ft_strlen(char *str);
+char	*ft_itoa(int n);

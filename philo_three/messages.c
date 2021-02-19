@@ -4,6 +4,7 @@ void		display(int np, char *message, t_philo *philo, t_init *init)
 {
 	struct timeval temp;
 
+
 	if (philo->philo_die == 1)
 	{
 		sem_wait(init->s_die);

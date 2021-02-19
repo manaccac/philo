@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manaccac <manaccac@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: jdel-ros <jdel-ros@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 13:48:32 by jdel-ros          #+#    #+#             */
-/*   Updated: 2021/02/18 12:25:04 by manaccac         ###   ########lyon.fr   */
+/*   Updated: 2021/02/19 07:56:57 by jdel-ros         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,13 @@
 
 int		routine(t_philo *philo, t_init *init)
 {
+	pthread_t			td_p;
+	int ret;
+
+	ret = 0;
+	ret = pthread_create(&td_p, NULL, ft_check_thread, (void *)philo);
+	// pthread_detach(td_p);
+
 	while (philo->no_limite == 0 && philo->nb_eat > 0 && philo->if_die == 0)
 	{
 		usleep(10);
@@ -28,9 +35,9 @@ int		routine(t_philo *philo, t_init *init)
 			}
 			return (1);
 		}
-		//
+		
+		sem_wait(philo->s_management);
 		sem_wait(init->s_fork);
-		//
 		if (ft_check_die(philo) == 1)
 		{
 			sem_wait(init->s_talk);
@@ -49,6 +56,7 @@ int		routine(t_philo *philo, t_init *init)
 		if (philo->nb_eat > 0)
 		{
 			philo_sleep(philo, init);
+			sem_post(philo->s_management);
 			if (philo->if_die == 1)
 				return (1);
 			display(philo->np, " is thinking", philo, init);
@@ -79,5 +87,6 @@ int		routine(t_philo *philo, t_init *init)
 			return (1);
 		display(philo->np, " is thinking", philo, init);
 	}
+	
 	return (0);
 }
