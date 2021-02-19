@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_die.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdel-ros <jdel-ros@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: manaccac <manaccac@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 10:40:23 by manaccac          #+#    #+#             */
-/*   Updated: 2021/02/18 14:31:57 by jdel-ros         ###   ########lyon.fr   */
+/*   Updated: 2021/02/19 08:54:19 by manaccac         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 

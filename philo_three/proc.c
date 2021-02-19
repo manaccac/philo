@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   proc.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdel-ros <jdel-ros@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: manaccac <manaccac@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 13:59:47 by jdel-ros          #+#    #+#             */
-/*   Updated: 2021/02/18 14:15:14 by jdel-ros         ###   ########lyon.fr   */
+/*   Updated: 2021/02/19 09:10:08 by manaccac         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		proc(t_init *init, int nb_philo)
 	int i = 0;
 	int status = 0;
 
-	while (i < nb_philo + 1)
+	while (i < nb_philo)
 	{
 		init->philo[i + 1].pid = fork();
 		if (init->philo[i + 1].pid == -1)
