@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_three.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdel-ros <jdel-ros@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: manaccac <manaccac@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 13:52:35 by jdel-ros          #+#    #+#             */
-/*   Updated: 2021/02/18 14:26:30 by jdel-ros         ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 07:09:47 by manaccac         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int				main(int argc, char **argv)
 	sem_unlink("/talk");
 	sem_unlink("/eat");
 	sem_unlink("/prio");
+	sem_unlink("/talk_die");
 	init.s_talk = sem_open("/talk", O_CREAT | O_EXCL, S_IRWXU, 1);
 	i = 0;
 	char *str;
@@ -81,7 +82,13 @@ int				main(int argc, char **argv)
 		i++;
 		str = ft_strjoin(str, ft_itoa(i));
 	}
-	// init.s_prio = sem_open("/prio", O_CREAT | O_EXCL, S_IRWXU, 1);
+	init.s_talk_die = sem_open("/talk_die", O_CREAT | O_EXCL, S_IRWXU, 1);
+	i = 0;
+	while (i < nb_philo)
+	{
+		init.philo[i].s_talk_die = init.s_talk_die;
+		i++;
+	}
 	init.s_eat = sem_open("/eat", O_CREAT | O_EXCL, S_IRWXU, nb_philo / 2);
 	init.s_die = sem_open("/die", O_CREAT | O_EXCL, S_IRWXU, 1);
 	init.s_fork = sem_open("/fork", O_CREAT | O_EXCL, S_IRWXU, nb_philo / 2);

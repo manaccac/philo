@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdel-ros <jdel-ros@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: manaccac <manaccac@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 13:48:32 by jdel-ros          #+#    #+#             */
-/*   Updated: 2021/02/19 10:00:25 by jdel-ros         ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 07:54:45 by manaccac         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,10 @@ int		routine(t_philo *philo, t_init *init)
 			if (philo->if_die == 0)
 			{
 				philo->if_die = 1;
-				display(philo->np, " died", philo, init);
 			}
 			exit (1);
 		}
 		
-		sem_wait(philo->s_management);
 		sem_wait(init->s_fork);
 		if (ft_check_die(philo) == 1)
 		{
@@ -45,7 +43,6 @@ int		routine(t_philo *philo, t_init *init)
 			if (philo->if_die == 0)
 			{
 				philo->if_die = 1;
-				display(philo->np, " died", philo, init);
 			}
 			exit (1);
 		}
@@ -56,7 +53,6 @@ int		routine(t_philo *philo, t_init *init)
 		if (philo->nb_eat > 0)
 		{
 			philo_sleep(philo, init);
-			sem_post(philo->s_management);
 			if (philo->if_die == 1)
 				return (1);
 			display(philo->np, " is thinking", philo, init);

@@ -49,6 +49,7 @@ typedef struct		s_philo
 	struct timeval start_time;
 	sem_t *s_talk;
 	sem_t *s_management;
+	sem_t *s_talk_die;
 	int if_die;
 	int fork;
 	int reload;
@@ -65,6 +66,7 @@ typedef struct		s_init
 	sem_t *s_talk;
 	sem_t *s_die;
 	sem_t *s_fork;
+	sem_t *s_talk_die;
 	sem_t *s_management;
 	t_philo		*philo;
 }					t_init;

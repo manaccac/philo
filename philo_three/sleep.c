@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sleep.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdel-ros <jdel-ros@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: manaccac <manaccac@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 12:35:51 by jdel-ros          #+#    #+#             */
-/*   Updated: 2021/02/17 14:17:38 by jdel-ros         ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 07:53:08 by manaccac         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int			philo_sleep(t_philo *philo, t_init *init)
 			if (philo->if_die == 0)
 			{
 				philo->if_die = 1;
-				display(philo->np, " died", philo, init);
 			}
 			return (1);
 		}

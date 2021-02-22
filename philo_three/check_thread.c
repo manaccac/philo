@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_thread.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdel-ros <jdel-ros@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: manaccac <manaccac@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 13:04:52 by jdel-ros          #+#    #+#             */
-/*   Updated: 2021/02/19 09:52:39 by jdel-ros         ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 07:57:29 by manaccac         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,24 +18,17 @@ void			*ft_check_thread(void *p_data)
 
 	philo = p_data;
 	//printf("philo =  %d\n", philo->np);
+	usleep(1000);
 	while (1)
 	{
-		sem_wait(philo->s_management);
-		if (philo->reload == 1)
-		{
-			// dprintf(1, "nb philo reload = %d\n", philo->np + 1);
-			// dprintf(1, "reload = %d\n", philo->reload);
-			philo->reload = 0;
-		}
 		if (ft_check_die(philo) == 1)
 		{
 			struct timeval temp_dead;
 			gettimeofday(&temp_dead, NULL);
-			
-			sem_wait(philo->s_talk);
 			philo->philo_die = 1;
 			if (philo->if_die == 0)
 			{
+				sem_wait(philo->s_talk_die);
 				philo->if_die = 1;
 				// dprintf(1, "{%ld}\n", ft_conv_to_ms(temp_dead, philo->start_time));
 				// dprintf(1, "DIE\n");
@@ -44,8 +37,7 @@ void			*ft_check_thread(void *p_data)
 			}
 			exit (1);
 		}
-		sem_post(philo->s_management);
-		usleep(50);
+		usleep(100);
 	}
 	return (0);
 }
