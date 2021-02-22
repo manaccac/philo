@@ -6,7 +6,7 @@
 /*   By: manaccac <manaccac@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 13:04:52 by jdel-ros          #+#    #+#             */
-/*   Updated: 2021/02/22 07:57:29 by manaccac         ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 09:08:05 by manaccac         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void			*ft_check_thread(void *p_data)
 	{
 		if (ft_check_die(philo) == 1)
 		{
+			sem_wait(philo->s_talk);
 			struct timeval temp_dead;
 			gettimeofday(&temp_dead, NULL);
 			philo->philo_die = 1;
@@ -30,9 +31,6 @@ void			*ft_check_thread(void *p_data)
 			{
 				sem_wait(philo->s_talk_die);
 				philo->if_die = 1;
-				// dprintf(1, "{%ld}\n", ft_conv_to_ms(temp_dead, philo->start_time));
-				// dprintf(1, "DIE\n");
-				// dprintf(1, "nb philo die = %d\n", philo->np + 1);
 				printf("%d %d%s\n", (int)ft_conv_to_ms(temp_dead, philo->start_time), philo->np + 1, " is died");
 			}
 			exit (1);

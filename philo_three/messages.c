@@ -3,19 +3,19 @@
 void		display(int np, char *message, t_philo *philo, t_init *init)
 {
 	struct timeval temp;
-
-	if (philo->philo_die == 1)
+	(void)init;
+	if (philo->if_die == 1)
+		;
+	else if (ft_check_die(philo) == 1)
+		philo->if_die = 1;
+	else
 	{
-		sem_wait(init->s_die);
+		usleep(100);
+		sem_wait(init->s_talk);
+		sem_wait(philo->s_talk_die);
 		gettimeofday(&temp, NULL);
 		printf("%d %d%s\n", (int)ft_conv_to_ms(temp, philo->start_time), np + 1, message);
-		return ;
+		sem_post(philo->s_talk_die);
+		sem_post(init->s_talk);
 	}
-	// sem_wait(init->s_prio);
-	// sem_post(init->s_prio);
-	usleep(100);
-	sem_wait(init->s_talk);
-	gettimeofday(&temp, NULL);
-	printf("%d %d%s\n", (int)ft_conv_to_ms(temp, philo->start_time), np + 1, message);
-	sem_post(init->s_talk);
 }

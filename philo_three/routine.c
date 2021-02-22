@@ -6,7 +6,7 @@
 /*   By: manaccac <manaccac@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 13:48:32 by jdel-ros          #+#    #+#             */
-/*   Updated: 2021/02/22 07:54:45 by manaccac         ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 08:54:03 by manaccac         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,30 +24,14 @@ int		routine(t_philo *philo, t_init *init)
 	while (philo->no_limite == 0 && philo->nb_eat > 0 && philo->if_die == 0)
 	{
 		usleep(10);
-		if (ft_check_die(philo) == 1)
-		{
-			sem_wait(init->s_talk);
-			philo->philo_die = 1;
-			if (philo->if_die == 0)
-			{
-				philo->if_die = 1;
-			}
-			exit (1);
-		}
 		
 		sem_wait(init->s_fork);
-		if (ft_check_die(philo) == 1)
-		{
-			sem_wait(init->s_talk);
-			philo->philo_die = 1;
-			if (philo->if_die == 0)
-			{
-				philo->if_die = 1;
-			}
-			exit (1);
-		}
+		if (philo->if_die == 1)
+				return (1);
 		display(philo->np, " has taken a fork", philo, init);
 		display(philo->np, " has taken a fork", philo, init);
+		if (philo->if_die == 1)
+				return (1);
 		philo_eat(philo, init);
 		sem_post(init->s_fork);
 		if (philo->nb_eat > 0)
@@ -57,6 +41,8 @@ int		routine(t_philo *philo, t_init *init)
 				return (1);
 			display(philo->np, " is thinking", philo, init);
 		}
+		if (philo->if_die == 1)
+			return (1);
 	}
 	//
 	while (philo->no_limite == 1 && philo->if_die == 0)
