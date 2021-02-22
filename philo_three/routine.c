@@ -6,7 +6,7 @@
 /*   By: manaccac <manaccac@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 13:48:32 by jdel-ros          #+#    #+#             */
-/*   Updated: 2021/02/22 08:54:03 by manaccac         ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 09:35:31 by manaccac         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,5 @@ int		routine(t_philo *philo, t_init *init)
 			return (1);
 		display(philo->np, " is thinking", philo, init);
 	}
-	
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: manaccac <manaccac@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 13:59:47 by jdel-ros          #+#    #+#             */
-/*   Updated: 2021/02/22 07:56:06 by manaccac         ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 09:39:55 by manaccac         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int		proc(t_init *init, int nb_philo)
 			bl = 1;
 		if (WEXITSTATUS(status) == 0)
 			y++;
-		if (y == nb_philo)
+		if (y == nb_philo + 1)
 			bl = 1;
 		i = 0;
 		while (bl && i < nb_philo + 1)
