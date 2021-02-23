@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_one.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdel-ros <jdel-ros@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: manaccac <manaccac@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:27:35 by jdel-ros          #+#    #+#             */
-/*   Updated: 2021/02/16 10:42:41 by jdel-ros         ###   ########lyon.fr   */
+/*   Updated: 2021/02/23 09:56:17 by manaccac         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 
 typedef struct		s_philo
 {
-	int				satiate;
 	int				philo_die;
 	int				nb_philo;
 	int				np;
@@ -33,13 +32,9 @@ typedef struct		s_philo
 	int				time_die;
 	int				nb_eat;
 	int				end_eat;
-	int				first_eat;
 	int				no_limite;
-	int				dead;
-	pthread_mutex_t	mt_eat;
 	struct timeval	ms_eat;
 	struct timeval	ms_sleep;
-	struct timeval	ms_think;
 	struct timeval	ms_died;
 	struct timeval	t_philo;
 	struct timeval	start_time;

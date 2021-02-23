@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   messages.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdel-ros <jdel-ros@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: manaccac <manaccac@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 09:04:58 by jdel-ros          #+#    #+#             */
-/*   Updated: 2021/02/16 09:34:09 by jdel-ros         ###   ########lyon.fr   */
+/*   Updated: 2021/02/23 09:39:27 by manaccac         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void		display(int name_philo, char *message, t_philo *philo)
 {
 	struct timeval temp;
-
 	pthread_mutex_lock(philo->p->talk);
 	if (philo->philo_die == 1)
 	{
