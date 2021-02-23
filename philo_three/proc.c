@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   proc.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manaccac <manaccac@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: jdel-ros <jdel-ros@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 13:59:47 by jdel-ros          #+#    #+#             */
-/*   Updated: 2021/02/22 09:39:55 by manaccac         ###   ########lyon.fr   */
+/*   Updated: 2021/02/23 08:47:43 by jdel-ros         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,11 @@ int		proc(t_init *init, int nb_philo)
 		if (WEXITSTATUS(status) == 0)
 			y++;
 		if (y == nb_philo + 1)
+		{
 			bl = 1;
+		}
 		i = 0;
-		while (bl && i < nb_philo + 1)
+		while (bl == 1 && i < nb_philo + 1)
 		{
 			kill(init->philo[i + 1].pid, 1);
 			i++;

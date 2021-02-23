@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manaccac <manaccac@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: jdel-ros <jdel-ros@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 13:48:32 by jdel-ros          #+#    #+#             */
-/*   Updated: 2021/02/22 09:54:11 by manaccac         ###   ########lyon.fr   */
+/*   Updated: 2021/02/23 08:45:57 by jdel-ros         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,11 @@ int		routine(t_philo *philo, t_init *init)
 
 	ret = 0;
 	ret = pthread_create(&td_p, NULL, ft_check_thread, (void *)philo);
-	// pthread_detach(td_p);
+	pthread_detach(td_p);
 	// dprintf(1, "philo %d\n", philo->np);
 	while (philo->no_limite == 0 && philo->nb_eat > 0 && philo->if_die == 0)
 	{
 		usleep(10);
-		
 		sem_wait(init->s_fork);
 		if (philo->if_die == 1)
 				return (1);
