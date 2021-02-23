@@ -6,7 +6,7 @@
 /*   By: manaccac <manaccac@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 09:05:33 by jdel-ros          #+#    #+#             */
-/*   Updated: 2021/02/23 09:59:09 by manaccac         ###   ########lyon.fr   */
+/*   Updated: 2021/02/16 11:41:40 by manaccac         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,13 @@ int				main(int argc, char **argv)
 	t_init				init;
 	struct timeval		start_time;
 	int					nb_philo;
+	int					i;
 	pthread_t			thread_philo[return_nb_philo(argv)];
 
 	if (check_arg(argc, argv) == 0)
 		return (0);
 	nb_philo = ft_atoi(argv[1]);
+	i = 0;
 	if (ft_malloc_struct(nb_philo, &init) == -1)
 		return (-1);
 	gettimeofday(&start_time, NULL);

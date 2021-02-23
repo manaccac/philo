@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manaccac <manaccac@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: jdel-ros <jdel-ros@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 09:04:16 by jdel-ros          #+#    #+#             */
-/*   Updated: 2021/02/23 09:29:58 by manaccac         ###   ########lyon.fr   */
+/*   Updated: 2021/02/16 09:29:49 by jdel-ros         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,9 @@ int			ft_init_var(int nb_philo, t_philo *philo, char **argv, int i)
 	philo[i].time_sleep = ft_atoi(argv[4]);
 	philo[i].end_eat = 0;
 	philo[i].np = i;
+	philo[i].dead = 0;
 	philo[i].philo_die = 0;
+	philo[i].satiate = 0;
 	if (argv[5] != NULL)
 	{
 		philo[i].nb_eat = ft_atoi(argv[5]);
