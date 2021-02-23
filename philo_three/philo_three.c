@@ -6,7 +6,7 @@
 /*   By: jdel-ros <jdel-ros@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 13:52:35 by jdel-ros          #+#    #+#             */
-/*   Updated: 2021/02/23 11:28:00 by jdel-ros         ###   ########lyon.fr   */
+/*   Updated: 2021/02/23 12:37:39 by jdel-ros         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static int			check_arg(int argc, char **argv)
 {
-	if (argv[1][0] == '-')
-		return (put_error(ERR_ARG));
 	if (argc < 5 || argc > 6)
+		return (put_error(ERR_ARG));
+	if (argv[1][0] == '-')
 		return (put_error(ERR_ARG));
 	if (ft_atoi(argv[1]) > 200 || ft_atoi(argv[1]) < 1)
 		return (put_error(ERR_ARG));

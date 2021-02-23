@@ -6,7 +6,7 @@
 /*   By: jdel-ros <jdel-ros@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 13:59:47 by jdel-ros          #+#    #+#             */
-/*   Updated: 2021/02/23 10:31:38 by jdel-ros         ###   ########lyon.fr   */
+/*   Updated: 2021/02/23 13:47:47 by jdel-ros         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,7 @@ int		proc_two(t_init *init, int nb_philo, int y, int bl)
 		if (WEXITSTATUS(status) == 0)
 			y++;
 		if (y == nb_philo + 1)
-		{
 			bl = 1;
-		}
 		while (bl == 1 && i < nb_philo + 1)
 		{
 			kill(init->philo[i + 1].pid, 1);

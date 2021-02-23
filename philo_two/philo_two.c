@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_two.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manaccac <manaccac@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: jdel-ros <jdel-ros@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 11:49:41 by jdel-ros          #+#    #+#             */
-/*   Updated: 2021/02/23 12:20:38 by manaccac         ###   ########lyon.fr   */
+/*   Updated: 2021/02/23 13:39:01 by jdel-ros         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void			ft_thread(int nb_philo, pthread_t td_p[nb_philo], t_init *init)
 static int		return_nb_philo(int argc, char **argv)
 {
 	int ret;
+
 	if (argc < 5)
 		return (0);
 	if (argv[1][0] != '-')
